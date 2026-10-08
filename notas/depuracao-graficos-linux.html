@@ -24,44 +24,7 @@
   <h1>Depuração de gráficos no Linux</h1>
 
   <article class="prose">
-    <p>Linux virou uma das partes mais importantes da minha trajetória. Meu computador virou objeto de estudo e um laboratório maravilhoso. Uso Ubuntu 24.04 e, com o tempo, parei de usar o sistema só como usuária. Comecei a mexer direto no terminal, nos arquivos, nos serviços, nos pacotes, nos drivers e no próprio processo de inicialização. Trabalhei com systemd, GDM, GNOME, Wayland, Xorg, GRUB, initramfs, DKMS, kernel e módulos. Isso aconteceu principalmente porque meu computador começou a dar problema.</p>
-
-    <p>E foi aí que começou a parte mais longa da minha experiência com Linux.</p>
-
-    <p>Meu computador é um Dell Inspiron 15 7000 Gaming, e em certo momento comecei a ter problemas gráficos sérios no Ubuntu. Tela preta, e a sessão gráfica não iniciava.</p>
-
-    <h2>Um pequeno relatório?</h2>
-
-    <p>No começo parecia só que a interface gráfica não estava funcionando, mas, investigando, percebi que tinha várias partes envolvidas. Investiguei GDM, GNOME, Wayland, Xorg, NVIDIA, Intel e o processo de inicialização. Também testei <code>nomodeset</code>, <code>startx</code>, reinstalação, os drivers da NVIDIA e o <code>nvidia-xconfig</code>. Sei que pra quem é da área isso pode ser básico, mas pra quem estava no escuro, fazendo tudo por conta própria, foi uma ótima maneira de cavar soluções.</p>
-
-    <p>Quando a interface gráfica não funcionava, passei a usar o TTY pra continuar investigando pelo terminal. Isso foi importante porque eu conseguia seguir trabalhando mesmo com o GNOME sem iniciar. Executava comandos, consultava serviços, verificava processos, analisava logs e alterava configurações direto de lá.</p>
-
-    <p>Isso mudou bastante a minha forma de enxergar problemas no Linux. Uma tela preta não explica nada. Pelo terminal, eu conseguia buscar informação sobre o que acontecia durante a inicialização. Comecei a usar o <code>journalctl</code> pra ler os logs e ver mensagens do kernel, da NVIDIA, da Intel, do GDM e de outros serviços.</p>
-
-    <p>Meu computador tem duas GPUs, então precisei entender como funciona um sistema híbrido: Intel HD Graphics 630 e NVIDIA GTX 1050 Ti Mobile.</p>
-
-    <p>Investiguei o driver da NVIDIA, o <code>nvidia-smi</code>, Prime, Prime On-Demand e o <code>prime-run</code>. Uma descoberta importante foi que a NVIDIA não estava simplesmente "sem funcionar". O sistema reconhecia a placa e o <code>prime-run</code> conseguia usar a GPU dedicada. Ou seja, o problema não podia ser resumido a driver não instalado. Aí fui investigar a relação entre hardware, driver, kernel, servidor gráfico, GDM e sessão do GNOME. Também olhei o driver <code>i915</code> da Intel e as mensagens da GPU integrada.</p>
-
-    <h2>Wayland, Xorg, GDM e GNOME: os cavaleiros do apocalipse</h2>
-
-    <p>Nesse processo entendi que a parte gráfica do Linux tem muitas camadas. O GDM cuida do login, o GNOME é o ambiente desktop, e Wayland ou Xorg são a infraestrutura gráfica que roda a sessão. Os drivers das GPUs também precisam funcionar direito dentro dessa estrutura.</p>
-
-    <p>Foi isso que explicou por que reinstalar o driver nem sempre resolvia. O hardware podia estar reconhecido, o driver podia estar funcionando, e mesmo assim a sessão gráfica falhava. Por quê?</p>
-
-    <p>Os logs viraram a minha principal ferramenta de diagnóstico. Também percebi que nem toda mensagem de erro no log é a causa do problema. Tem warning, erro secundário e mensagem que aparece durante a inicialização sem impedir o sistema de funcionar.</p>
-
-    <p>Então comecei a comparar o comportamento do computador com os logs e a procurar quais mensagens realmente tinham a ver com o problema. Olha eu voltando pra investigação.</p>
-
-    <p>Passei a trabalhar com versões diferentes do kernel. Uma que consegui usar direito foi a <code>6.17.0-40-generic</code>. Também teve uma situação com o kernel <code>7.0.0-28</code>. Isso me fez entender que o kernel não é simplesmente uma "versão do Ubuntu", e sim a parte central do sistema, responsável pela comunicação com o hardware. Drivers e módulos precisam ser compatíveis com o kernel em uso. E isso vira um problema maior do que você imaginava.</p>
-
-    <p>Foi aí que conheci o DKMS. A NVIDIA usa módulos que precisam ser compilados pra versões específicas do kernel. Investiguei a compilação do driver NVIDIA 580.173.02 pros kernels instalados, e isso me ajudou a entender por que uma atualização de kernel pode quebrar um driver que funcionava. Um driver não existe isolado: tem módulos que precisam funcionar junto com aquele kernel específico. E isso é uma merda.</p>
-
-    <p>dpkg, initramfs e GRUB me deram uma dor de cabeça que eu não imaginava. Usei <code>dpkg --configure -a</code> pra continuar a configuração dos pacotes.</p>
-
-    <p>Depois ainda precisei lidar com o initramfs e o GRUB. Foi nesse processo que comecei a entender o caminho que o computador faz na inicialização: firmware, GRUB, kernel, initramfs, módulos e serviços, até chegar no GDM e no ambiente gráfico.</p>
-
-    <p>Antes era: "o computador liga e aparece o Ubuntu". Depois desse problema, passei a entender o que acontece entre essas duas coisas. Isso eu aprenderia de um jeito mais fácil numa faculdade, mas será que seria do mesmo jeito?</p>
-    <p>Linux virou uma das partes mais importantes da minha trajetória. Meu computador virou objeto de estudo e um laboratório maravilhoso. Uso Ubuntu 24.04 e, com o tempo, parei de usar o sistema só como usuária. Comecei a mexer direto no terminal, nos arquivos, nos serviços, nos pacotes, nos drivers e no próprio processo de inicialização. Trabalhei com systemd, GDM, GNOME, Wayland, Xorg, GRUB, initramfs, DKMS, kernel e módulos. Isso aconteceu principalmente porque meu computador começou a dar problema.</p>
+      <p>Linux virou uma das partes mais importantes da minha trajetória. Meu computador virou objeto de estudo e um laboratório maravilhoso. Uso Ubuntu 24.04 e, com o tempo, parei de usar o sistema só como usuária. Comecei a mexer direto no terminal, nos arquivos, nos serviços, nos pacotes, nos drivers e no próprio processo de inicialização. Trabalhei com systemd, GDM, GNOME, Wayland, Xorg, GRUB, initramfs, DKMS, kernel e módulos. Isso aconteceu principalmente porque meu computador começou a dar problema.</p>
 
     <p>E foi aí que começou a parte mais longa da minha experiência com Linux.</p>
 
