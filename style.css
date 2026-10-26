@@ -233,6 +233,15 @@ p:last-child{margin-bottom:0}
 }
 .thumb img{width:100%;height:100%;object-fit:cover}
 .thumb span{background:var(--line);color:var(--paper);font-size:.75rem;padding:2px 8px}
+.thumb.sem-print img{width:62%;height:auto;object-fit:contain;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.45))}
+.card .thumb img{transition:transform .25s}
+.card:hover .thumb:not(.sem-print) img{transform:scale(1.04)}
+
+/* print grande na página do projeto */
+.shot{margin:0 0 36px}
+.shot a{display:block;border:3px solid var(--line);box-shadow:6px 6px 0 var(--line);background:var(--line)}
+.shot img{width:100%;height:auto}
+.shot figcaption{margin-top:10px;font-size:.8rem;color:var(--paper);text-shadow:1px 1px 0 var(--line)}
 .acts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:auto;font-size:.9rem}
 
 /* linha do tempo */
@@ -350,5 +359,5 @@ footer a{color:var(--muted)}
 @media (prefers-reduced-motion:reduce){
   .ticker span{animation:none;padding-left:12px}
   .timeline li:last-child::before{animation:none}
-  .contatos a{transition:none}
+  .contatos a,.card .thumb img{transition:none}
 }
