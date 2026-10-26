@@ -14,7 +14,6 @@
 /* 1. CORES E FONTES ------------------------------------- */
 :root{
   --bg:#120203;        /* fundo da janela */
-  --bg-glow:#5a0a0e;   /* brilho vermelho no topo do fundo */
   --red:#b81f25;       /* vermelho principal da coluna */
   --hot:#ff4040;       /* vermelho forte, pra destaque em fundo preto */
   --blood:#7a0000;     /* vermelho escuro do gato */
@@ -36,11 +35,14 @@ html{font-family:var(--mono);font-size:16px;line-height:1.65;color:var(--paper);
 body{
   min-height:100vh;
   padding:24px 16px 64px;
-  /* grade quadriculada + brilho vermelho, igual à referência */
+  /* grade quadriculada + escurecido nas bordas + espinhos.
+     A imagem dos espinhos foi espelhada nas duas direções (img/fundo-espinhos.webp),
+     então ela se repete sem emenda em tela larga em vez de esticar. */
   background:
-    linear-gradient(rgba(255,64,64,.10) 1px,transparent 1px) 0 0/32px 32px,
-    linear-gradient(90deg,rgba(255,64,64,.10) 1px,transparent 1px) 0 0/32px 32px,
-    radial-gradient(ellipse at 50% 0%,var(--bg-glow),var(--bg) 70%);
+    linear-gradient(rgba(255,64,64,.07) 1px,transparent 1px) 0 0/32px 32px,
+    linear-gradient(90deg,rgba(255,64,64,.07) 1px,transparent 1px) 0 0/32px 32px,
+    radial-gradient(ellipse at 50% 30%,transparent 40%,rgba(18,2,3,.75) 100%),
+    url("img/fundo-espinhos.webp") center top/1800px auto repeat;
   background-color:var(--bg);
   background-attachment:fixed;
 }
@@ -265,7 +267,7 @@ p:last-child{margin-bottom:0}
 .prose .todo{border:2px dashed var(--link);padding:12px 14px;font-size:.9rem}
 .assinatura{font-family:var(--pixel);font-size:1.4rem;color:var(--link);text-align:right}
 
-footer{max-width:880px;margin:24px auto 0;font-size:.8rem;color:var(--muted);text-align:center}
+footer{width:fit-content;max-width:880px;margin:24px auto 0;padding:2px 12px;font-size:.8rem;color:var(--muted);text-align:center;background:var(--line)}
 footer a{color:var(--muted)}
 
 /* 7. STICKERS -------------------------------------------- */
