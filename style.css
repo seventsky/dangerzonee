@@ -209,6 +209,7 @@ p:last-child{margin-bottom:0}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .card{display:flex;flex-direction:column;gap:8px}
 .card h3{font-size:1.3rem}
+.card .fav{font:500 .7rem var(--mono);background:var(--hot);color:var(--ink);border:2px solid var(--line);padding:0 6px;vertical-align:middle;white-space:nowrap}
 .card p{font-size:.85rem;color:var(--muted)}
 .paper .card p{color:inherit}
 .thumb{
