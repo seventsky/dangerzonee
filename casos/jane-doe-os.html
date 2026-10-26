@@ -4,40 +4,67 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Jane Doe / OS — Karina Rodrigues</title>
+<meta name="description" content="Estudo de caso: Jane Doe / OS. Interface de investigação que imita um sistema operacional fictício.">
+<meta property="og:title" content="Jane Doe / OS — Karina Rodrigues">
+<meta property="og:description" content="Estudo de caso: Jane Doe / OS. Interface de investigação que imita um sistema operacional fictício.">
+<meta name="theme-color" content="#b81f25">
+<link rel="icon" href="../img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-<nav>
-  <span>karina rodrigues</span>
-  <span class="links">
-    <a href="../index.html">início</a>
-    <a href="../projects.html" aria-current="page">projetos</a>
-    <a href="../lab.html">laboratório</a>
-  </span>
-</nav>
+<body data-root="../">
+<div class="page">
+  <header>
+    <p class="updated">última atualização: 26 out 2026</p>
+    <div class="titlebar">
+      <a class="logo" href="../index.html">KARINA_RODRIGUES</a>
+      <a class="chip" href="../index.html#contato">contato</a>
+    </div>
+    <nav class="menu" aria-label="Menu principal">
+      <span class="links">
+      <a href="../index.html">início</a>
+      <a href="../sobre.html">sobre</a>
+      <a href="../projects.html" aria-current="page">projetos</a>
+      <a href="../lab.html">laboratório</a>
+      </span>
+      <form class="busca" role="search" autocomplete="off">
+        <label class="sr-only" for="busca">buscar no site</label>
+        <input id="busca" type="search" placeholder="buscar no site...">
+        <ul class="busca-res" aria-live="polite"></ul>
+      </form>
+    </nav>
+  </header>
 
-<main class="wrap">
+<main>
   <a class="back" href="../projects.html">← voltar pra projetos</a>
-  <h1>Jane Doe / OS</h1>
+  <h1 class="page-title">Jane Doe / OS</h1>
+  <p class="lead">Interface de investigação que imita um sistema operacional fictício.</p>
 
-  <dl class="meta">
-    <dt>status</dt><dd>em desenvolvimento</dd>
-    <dt>stack</dt><dd>HTML, CSS, JavaScript</dd>
-    <dt>código</dt><dd><a href="https://github.com/seventsky" target="_blank" rel="noopener">repositório ↗</a></dd>
-  </dl>
-
-  <article class="prose">
+  <article class="box paper">
+    <dl class="meta">
+      <dt>status</dt><dd>em desenvolvimento</dd>
+      <dt>stack</dt><dd>HTML, CSS, JavaScript</dd>
+      <dt>código</dt><dd><a href="https://github.com/seventsky/seventsky.github.io" target="_blank" rel="noopener">repositório ↗</a></dd>
+      <dt>online</dt><dd><a href="https://seventsky.github.io/" target="_blank" rel="noopener">abrir o projeto ↗</a></dd>
+    </dl>
+    <div class="prose">
     <p>Um dos projetos que fiz foi o JANE DOE / OS — MOSTSERO Investigation Build.</p>
 
     <p>A ideia era montar uma interface que parecesse um sistema operacional fictício, em vez de um site tradicional. Tem terminal, messenger, caseboard, archive, login e outros elementos de investigação. A personagem é a Carolina Stozzo, e tudo foi feito em HTML e CSS, com uma estética escura e cheia de glitch.</p>
 
     <p>Foi uma forma de praticar desenvolvimento web ao mesmo tempo em que eu construía uma experiência. Comecei a pensar em como os elementos de uma interface se relacionam e em como uma página pode funcionar como um ambiente. A ambientação tinha a ver com tudo que eu queria mostrar pro mundo.</p>
+    </div>
   </article>
 </main>
+</div>
 
-<footer>© 2026 Karina Rodrigues · feito à mão com HTML, CSS e JS</footer>
+<footer>
+  © 2026 Karina Rodrigues · sete chaves ·
+  <a href="https://github.com/seventsky" target="_blank" rel="noopener">github</a> ·
+  <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">linkedin</a>
+</footer>
+<script src="../script.js"></script>
 </body>
 </html>
