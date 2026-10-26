@@ -4,57 +4,63 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Laboratório — Karina Rodrigues</title>
+<meta name="description" content="Notas de estudo e experimentos da Karina Rodrigues: Linux, segurança web, SIEM e mais.">
+<meta property="og:title" content="Laboratório — Karina Rodrigues">
+<meta property="og:description" content="Notas de estudo e experimentos da Karina Rodrigues: Linux, segurança web, SIEM e mais.">
+<meta name="theme-color" content="#b81f25">
+<link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<nav>
-  <span>karina rodrigues</span>
-  <span class="links">
-    <a href="index.html">início</a>
-    <a href="projects.html">projetos</a>
-    <a href="lab.html" aria-current="page">laboratório</a>
-  </span>
-</nav>
-
-<main class="wrap">
-  <h1>Laboratório</h1>
-  <p class="dim">Experimentos e notas de estudo. Nem tudo aqui é projeto pronto, e é essa a ideia.</p>
-
-  <div style="margin-top:32px">
-    <div class="row">
-      <span class="dim">nota</span>
-      <div><h3>Depuração de gráficos no Linux</h3></div>
-      <span class="acts"><a href="notas/depuracao-graficos-linux.html">abrir</a></span>
+<body data-root="">
+<div class="page">
+  <header>
+    <p class="updated">última atualização: 26 out 2026</p>
+    <div class="titlebar">
+      <a class="logo" href="index.html">KARINA_RODRIGUES</a>
+      <a class="chip" href="index.html#contato">contato</a>
     </div>
-    <div class="row">
-      <span class="dim">estudo</span>
-      <div><h3>Wazuh SIEM</h3></div>
-      <span class="acts"><a href="notas/wazuh-siem.html">abrir</a></span>
-    </div>
-    <div class="row">
-      <span class="dim">nota</span>
-      <div><h3>Anotações de segurança web</h3></div>
-      <span class="acts"><a href="notas/anotacoes-seguranca-web.html">abrir</a></span>
-    </div>
-    <div class="row">
-      <span class="dim">nota</span>
-      <div><h3>Git e GitHub</h3></div>
-      <span class="acts"><a href="notas/git-e-github.html">abrir</a></span>
-    </div>
-    <div class="row">
-      <span class="dim">código</span>
-      <div><h3>Discord Rich Presence</h3></div>
-      <span class="acts">
-        <a href="notas/discord-rich-presence.html">abrir</a>
-        <a href="https://discord.com/users/874118558521634826" target="_blank" rel="noopener">código ↗</a>
+    <nav class="menu" aria-label="Menu principal">
+      <span class="links">
+      <a href="index.html">início</a>
+      <a href="sobre.html">sobre</a>
+      <a href="projects.html">projetos</a>
+      <a href="lab.html" aria-current="page">laboratório</a>
       </span>
-    </div>
-  </div>
+      <form class="busca" role="search" autocomplete="off">
+        <label class="sr-only" for="busca">buscar no site</label>
+        <input id="busca" type="search" placeholder="buscar no site...">
+        <ul class="busca-res" aria-live="polite"></ul>
+      </form>
+    </nav>
+  </header>
+
+<main>
+  <h1 class="page-title">Laboratório</h1>
+  <p class="lead">Experimentos e notas de estudo. Nem tudo aqui é projeto pronto, e é essa a ideia.</p>
+
+  <section class="box paper">
+    <h2 class="label">&gt;&gt; notas de campo</h2>
+    <ul class="list">
+      <li><span class="kind">nota</span><div><h2><a href="notas/depuracao-graficos-linux.html">Depuração de gráficos no Linux</a></h2><small>Tela preta, duas GPUs, kernel, DKMS e muito journalctl.</small></div></li>
+      <li><span class="kind">estudo</span><div><h2><a href="notas/wazuh-siem.html">Wazuh SIEM</a></h2><small>Monitoramento, logs, eventos e o lado defensivo da segurança.</small></div></li>
+      <li><span class="kind">nota</span><div><h2><a href="notas/anotacoes-seguranca-web.html">Anotações de segurança web</a></h2><small>Requisições, sessões, cookies e por que entender o normal vem antes da falha.</small></div></li>
+      <li><span class="kind">nota</span><div><h2><a href="notas/git-e-github.html">Git e GitHub</a></h2><small>Repositórios, README e GitHub Pages.</small></div></li>
+      <li><span class="kind">código</span><div><h2><a href="notas/discord-rich-presence.html">Discord Rich Presence</a></h2><small>Rust, Cargo e um serviço do systemd rodando em segundo plano.</small></div></li>
+    </ul>
+  </section>
 </main>
 
-<footer>© 2026 Karina Rodrigues · feito à mão com HTML, CSS e JS</footer>
+  <img class="sticker" data-id="borboleta" src="img/stickers/borboleta.webp" alt="" style="--x:calc(100% - 120px);--y:120px;--w:130px;--r:14deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
+</div>
+
+<footer>
+  © 2026 Karina Rodrigues · sete chaves ·
+  <a href="https://github.com/seventsky" target="_blank" rel="noopener">github</a> ·
+  <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">linkedin</a>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>
