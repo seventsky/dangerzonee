@@ -13,6 +13,7 @@ const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ---------------------------------------------------------
 // 1. NOME INTERATIVO (só na home)
+// Parado, o nome fica na fonte pincel (Cyber Brush).
 // O cursor controla: esquerda/direita = espaçamento,
 // cima/meio/baixo = fonte, embaixo = sublinhado,
 // e as letras perto do cursor "fogem" e crescem.
@@ -28,7 +29,9 @@ function nomeInterativo(){
     { nome: 'pixel', familia: 'var(--pixel)', estilo: 'normal' },
     { nome: 'mono',  familia: 'var(--mono)',  estilo: 'normal' },
     { nome: 'serif', familia: 'var(--serif)', estilo: 'italic' },
+    { nome: 'pincel', familia: 'var(--brush)', estilo: 'normal' },
   ];
+  const PINCEL = 3; // fonte do nome quando ninguém está mexendo
   let fonteAtual = -1;
   let spacing = 0, target = 0;   // espaçamento atual e o que ele quer alcançar
   let mx = 0, my = 0;            // posição do cursor
@@ -87,7 +90,7 @@ function nomeInterativo(){
 
   // pointerleave = cursor saiu | pointercancel = o dedo começou a rolar a página
   const repouso = () => {
-    active = false; target = 0; setFont(0);
+    active = false; target = 0; setFont(PINCEL);
     name.classList.remove('sublinhado');
     state.textContent = 'estado: repouso';
     kick();
@@ -95,7 +98,7 @@ function nomeInterativo(){
   box.addEventListener('pointerleave', repouso);
   box.addEventListener('pointercancel', repouso);
 
-  setFont(0);
+  setFont(PINCEL);
 }
 
 
