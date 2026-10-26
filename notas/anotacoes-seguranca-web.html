@@ -4,32 +4,59 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Anotações de segurança web — Karina Rodrigues</title>
+<meta name="description" content="Requisições, sessões, cookies e por que entender o normal vem antes da falha.">
+<meta property="og:title" content="Anotações de segurança web — Karina Rodrigues">
+<meta property="og:description" content="Requisições, sessões, cookies e por que entender o normal vem antes da falha.">
+<meta name="theme-color" content="#b81f25">
+<link rel="icon" href="../img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-<nav>
-  <span>karina rodrigues</span>
-  <span class="links">
-    <a href="../index.html">início</a>
-    <a href="../projects.html">projetos</a>
-    <a href="../lab.html" aria-current="page">laboratório</a>
-  </span>
-</nav>
+<body data-root="../">
+<div class="page">
+  <header>
+    <p class="updated">última atualização: 26 out 2026</p>
+    <div class="titlebar">
+      <a class="logo" href="../index.html">KARINA_RODRIGUES</a>
+      <a class="chip" href="../index.html#contato">contato</a>
+    </div>
+    <nav class="menu" aria-label="Menu principal">
+      <span class="links">
+      <a href="../index.html">início</a>
+      <a href="../sobre.html">sobre</a>
+      <a href="../projects.html">projetos</a>
+      <a href="../lab.html" aria-current="page">laboratório</a>
+      </span>
+      <form class="busca" role="search" autocomplete="off">
+        <label class="sr-only" for="busca">buscar no site</label>
+        <input id="busca" type="search" placeholder="buscar no site...">
+        <ul class="busca-res" aria-live="polite"></ul>
+      </form>
+    </nav>
+  </header>
 
-<main class="wrap">
+<main>
   <a class="back" href="../lab.html">← voltar pro laboratório</a>
-  <h1>Anotações de segurança web</h1>
+  <h1 class="page-title">Anotações de segurança web</h1>
+  <p class="lead">Requisições, sessões, cookies e por que entender o normal vem antes da falha.</p>
 
-  <article class="prose">
-        <p>Pra analisar uma aplicação web, preciso entender requisições, respostas, rotas, autenticação, sessões, cookies, validação, frontend, backend e servidor.</p>
+  <article class="box paper">
+    <div class="prose">
+    <p>Pra analisar uma aplicação web, preciso entender requisições, respostas, rotas, autenticação, sessões, cookies, validação, frontend, backend e servidor.</p>
 
     <p>Também estudei a relação entre frontend, backend, servidor, requisições, respostas, autenticação, sessões, cookies e entrada de usuário. Pra entender uma vulnerabilidade, preciso entender o funcionamento normal da aplicação. Por isso o desenvolvimento web deixou de ser uma área separada dos meus estudos de segurança.</p>
+    </div>
   </article>
 </main>
+</div>
 
-<footer>© 2026 Karina Rodrigues · feito à mão com HTML, CSS e JS</footer>
+<footer>
+  © 2026 Karina Rodrigues · sete chaves ·
+  <a href="https://github.com/seventsky" target="_blank" rel="noopener">github</a> ·
+  <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">linkedin</a>
+</footer>
+<script src="../script.js"></script>
 </body>
 </html>
