@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Depuração de gráficos no Linux — Karina Rodrigues</title>
-<meta name="description" content="Tela preta, duas GPUs, kernel, DKMS e muito journalctl.">
+<meta name="description" content="tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.">
 <meta property="og:title" content="Depuração de gráficos no Linux — Karina Rodrigues">
-<meta property="og:description" content="Tela preta, duas GPUs, kernel, DKMS e muito journalctl.">
+<meta property="og:description" content="tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.">
 <meta name="theme-color" content="#b81f25">
 <link rel="preload" href="../fonts/cyber-brush.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="../img/favicon.png" type="image/png">
@@ -20,7 +20,7 @@
 <a class="pular" href="#conteudo">pular pro conteúdo</a>
 <div class="page">
   <header>
-    <p class="updated">última atualização: 26 out 2026</p>
+    <p class="updated">atualizado em 26 out 2026</p>
     <div class="titlebar">
       <a class="logo" href="../index.html">KARINA RODRIGUES</a>
       <a class="chip" href="../index.html#contato">contato</a>
@@ -43,43 +43,43 @@
 <main id="conteudo">
   <a class="back" href="../lab.html">← voltar pro laboratório</a>
   <h1 class="page-title">Depuração de gráficos no Linux</h1>
-  <p class="lead">Tela preta, duas GPUs, kernel, DKMS e muito journalctl.</p>
+  <p class="lead">tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.</p>
 
   <article class="box paper">
     <div class="prose">
-    <p>Uso Ubuntu 24.04. Durante muito tempo eu fui só usuária: ligava, usava, desligava. Até o computador começar a dar problema.</p>
+    <p>uso ubuntu 24.04. por muito tempo eu fui só usuária, ligava, usava e desligava. até o computador começar a dar problema.</p>
 
-    <p>Aí não teve jeito. Fui parar no terminal, nos arquivos, nos serviços, nos pacotes, nos drivers, no processo de inicialização. systemd, GDM, GNOME, Wayland, Xorg, GRUB, initramfs, DKMS, kernel, módulos: aprendi quase tudo isso porque precisei.</p>
+    <p>aí não teve jeito. fui parar no terminal, nos arquivos, nos serviços, nos pacotes, nos drivers, no processo de inicialização. systemd, gdm, gnome, wayland, xorg, grub, initramfs, dkms, kernel, módulos... aprendi quase tudo isso porque precisei.</p>
 
-    <p>Meu notebook é um Dell Inspiron 15 7000 Gaming. Um dia o Ubuntu parou de abrir a parte gráfica. Tela preta, e a sessão não subia.</p>
+    <p>meu notebook é um dell inspiron 15 7000 gaming. um dia o ubuntu parou de abrir a parte gráfica. tela preta, e a sessão não subia.</p>
 
-    <h2>Um pequeno relatório?</h2>
+    <h2>um pequeno relatório?</h2>
 
-    <p>No começo parecia só "a interface não tá funcionando". Investigando, vi que tinha muita coisa no meio: GDM, GNOME, Wayland, Xorg, NVIDIA, Intel, a inicialização inteira. Testei <code>nomodeset</code>, <code>startx</code>, reinstalei, mexi nos drivers da NVIDIA, rodei <code>nvidia-xconfig</code>. Sei que pra quem é da área isso pode ser básico. Pra quem tava no escuro, sozinha, foi cavar solução na unha.</p>
+    <p>no começo parecia só "a interface não tá funcionando". investigando, vi que tinha muita coisa no meio. gdm, gnome, wayland, xorg, nvidia, intel, a inicialização inteira. testei <code>nomodeset</code>, <code>startx</code>, reinstalei, mexi nos drivers da nvidia, rodei <code>nvidia-xconfig</code>. sei que pra quem é da área isso pode ser básico, mas pra quem tava no escuro, sozinha, foi cavar solução na unha.</p>
 
-    <p>Sem interface gráfica, fui pro TTY. De lá eu continuava trabalhando mesmo com o GNOME fora do ar: rodava comando, olhava serviço, processo, log, mudava configuração.</p>
+    <p>sem interface gráfica, fui pro tty. de lá eu continuava trabalhando mesmo com o gnome fora do ar. rodava comando, olhava serviço, processo, log, mudava configuração.</p>
 
-    <p>Tela preta não explica nada. O terminal explica. Comecei a usar o <code>journalctl</code> pra ler o log do boot e ver o que o kernel, a NVIDIA, a Intel e o GDM tinham a dizer.</p>
+    <p>tela preta não explica nada, o terminal explica. comecei a usar o <code>journalctl</code> pra ler o log do boot e ver o que o kernel, a nvidia, a intel e o gdm tinham pra dizer.</p>
 
-    <p>O notebook tem duas placas de vídeo, uma Intel HD Graphics 630 e uma NVIDIA GTX 1050 Ti Mobile, então eu tive que entender como funciona um sistema híbrido.</p>
+    <p>o notebook tem duas placas de vídeo, uma intel hd graphics 630 e uma nvidia gtx 1050 ti mobile, então eu tive que entender como funciona um sistema híbrido.</p>
 
-    <p>Fui atrás do driver da NVIDIA, do <code>nvidia-smi</code>, do Prime, do Prime On-Demand e do <code>prime-run</code>. E descobri uma coisa importante: a NVIDIA não estava "sem funcionar". O sistema reconhecia a placa, e o <code>prime-run</code> conseguia usar ela. O problema não era "driver não instalado". Era alguma coisa no caminho entre hardware, driver, kernel, servidor gráfico, GDM e GNOME. Também fui olhar o <code>i915</code>, o driver da Intel, e as mensagens da placa integrada.</p>
+    <p>fui atrás do driver da nvidia, do <code>nvidia-smi</code>, do prime, do prime on-demand e do <code>prime-run</code>. e descobri uma coisa importante, a nvidia não tava "sem funcionar". o sistema reconhecia a placa e o <code>prime-run</code> conseguia usar ela. então o problema não era "driver não instalado", era alguma coisa no caminho entre hardware, driver, kernel, servidor gráfico, gdm e gnome. também fui olhar o <code>i915</code>, que é o driver da intel, e as mensagens da placa integrada.</p>
 
-    <h2>Wayland, Xorg, GDM e GNOME: os cavaleiros do apocalipse</h2>
+    <h2>wayland, xorg, gdm e gnome, os cavaleiros do apocalipse</h2>
 
-    <p>A parte gráfica do Linux tem camada pra caramba. O GDM cuida do login. O GNOME é o ambiente. Wayland ou Xorg é o que roda a sessão por baixo. E os drivers das duas placas precisam funcionar direitinho no meio disso tudo.</p>
+    <p>a parte gráfica do linux tem camada pra caramba. o gdm cuida do login, o gnome é o ambiente, e wayland ou xorg é o que roda a sessão por baixo. e os drivers das duas placas precisam funcionar direitinho no meio disso tudo.</p>
 
-    <p>Por isso reinstalar o driver nem sempre resolvia. A placa podia estar reconhecida, o driver podia estar funcionando, e a sessão gráfica caía mesmo assim. Por quê?</p>
+    <p>por isso reinstalar o driver nem sempre resolvia. a placa podia tá reconhecida, o driver podia tá funcionando, e a sessão gráfica caía mesmo assim. por quê?</p>
 
-    <p>O log virou minha principal ferramenta. E eu aprendi que nem todo erro no log é o culpado: tem warning, tem erro secundário, tem mensagem que aparece em todo boot e não atrapalha nada. Então comecei a comparar o que o computador fazia com o que o log dizia, pra separar o que importava do resto. Olha eu voltando pra investigação.</p>
+    <p>o log virou minha principal ferramenta. e eu aprendi que nem todo erro no log é o culpado. tem warning, tem erro secundário, tem mensagem que aparece em todo boot e não atrapalha nada. então comecei a comparar o que o computador fazia com o que o log dizia, pra separar o que importava do resto. olha eu voltando pra investigação.</p>
 
-    <p>Testei versões diferentes do kernel. A <code>6.17.0-40-generic</code> funcionou direito. Também teve um episódio com a <code>7.0.0-28</code>. Foi aí que caiu a ficha: kernel não é "a versão do Ubuntu". É o centro do sistema, quem conversa com o hardware. E driver e módulo têm que ser compatíveis com o kernel que tá rodando. O problema fica maior do que você imagina.</p>
+    <p>testei versões diferentes do kernel. a <code>6.17.0-40-generic</code> funcionou direito, e também teve um episódio com a <code>7.0.0-28</code>. foi aí que caiu a ficha. kernel não é "a versão do ubuntu", é o centro do sistema, quem conversa com o hardware. e driver e módulo têm que ser compatíveis com o kernel que tá rodando. o problema fica maior do que você imagina.</p>
 
-    <p>Foi assim que eu conheci o DKMS. A NVIDIA usa módulos que precisam ser compilados pra cada versão de kernel. Fui ver a compilação do driver 580.173.02 pros kernels instalados e entendi por que uma atualização de kernel quebra um driver que funcionava ontem. O driver não vive sozinho: os módulos dele precisam bater com aquele kernel específico. E isso é uma merda.</p>
+    <p>foi assim que eu conheci o dkms. a nvidia usa módulos que precisam ser compilados pra cada versão de kernel. fui ver a compilação do driver 580.173.02 pros kernels instalados e entendi por que uma atualização de kernel quebra um driver que funcionava ontem. o driver não vive sozinho, os módulos dele precisam bater com aquele kernel específico. e isso é uma merda.</p>
 
-    <p>dpkg, initramfs e GRUB me deram uma dor de cabeça que eu não esperava. Usei <code>dpkg --configure -a</code> pra terminar a configuração dos pacotes. Depois ainda tive que mexer no initramfs e no GRUB, e foi nesse processo que eu entendi o caminho que o computador faz até ligar: firmware, GRUB, kernel, initramfs, módulos, serviços, GDM e, finalmente, a interface gráfica.</p>
+    <p>dpkg, initramfs e grub me deram uma dor de cabeça que eu não esperava. usei <code>dpkg --configure -a</code> pra terminar a configuração dos pacotes. depois ainda tive que mexer no initramfs e no grub, e foi nesse processo que eu entendi o caminho que o computador faz até ligar. firmware, grub, kernel, initramfs, módulos, serviços, gdm e, finalmente, a interface gráfica.</p>
 
-    <p>Antes era "liga o computador e aparece o Ubuntu". Agora eu sei o que acontece entre uma coisa e outra. Numa faculdade eu talvez aprendesse isso de um jeito mais fácil. Mas será que seria do mesmo jeito?</p>
+    <p>antes era "liga o computador e aparece o ubuntu". agora eu sei o que acontece entre uma coisa e outra. numa faculdade eu talvez aprendesse isso de um jeito mais fácil. mas será que seria do mesmo jeito?</p>
     </div>
   </article>
 </main>
