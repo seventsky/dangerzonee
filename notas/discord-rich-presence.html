@@ -3,50 +3,77 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Discord Rich Presence — Karina Rodrigues</title>
+<title>Discord Rich Presence · Karina Rodrigues</title>
 <meta name="description" content="rust, cargo e um serviço do systemd rodando em segundo plano.">
-<meta property="og:title" content="Discord Rich Presence — Karina Rodrigues">
+<meta property="og:title" content="Discord Rich Presence · Karina Rodrigues">
 <meta property="og:description" content="rust, cargo e um serviço do systemd rodando em segundo plano.">
-<meta name="theme-color" content="#b81f25">
+<meta name="theme-color" content="#c8161d">
 <link rel="preload" href="../fonts/cyber-brush.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="../img/favicon.png" type="image/png">
+<link rel="icon" href="../img/favicon.png" type="image/png" sizes="64x64">
+<link rel="icon" href="../img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=5">
 </head>
 <body data-root="../">
 <a class="pular" href="#conteudo">pular pro conteúdo</a>
-<div class="page">
-  <header>
-    <p class="updated">atualizado em 26 out 2026</p>
-    <div class="titlebar">
-      <a class="logo" href="../index.html">KARINA RODRIGUES</a>
-      <a class="chip" href="../index.html#contato">contato</a>
-    </div>
-    <nav class="menu" aria-label="Menu principal">
-      <span class="links">
-      <a href="../index.html">início</a>
-      <a href="../sobre.html">sobre</a>
-      <a href="../projects.html">projetos</a>
-      <a href="../lab.html" aria-current="page">laboratório</a>
-      </span>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="../index.html" aria-label="Karina Rodrigues, página inicial">
+      <img src="../img/logo.webp" alt="" width="160" height="146">
+      <b>Karina <span>Rodrigues</span></b>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>menu</button>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <ul>
+        <li><a href="../index.html"><small>01</small><span>início</span></a></li>
+        <li><a href="../sobre.html"><small>02</small><span>sobre</span></a></li>
+        <li><a href="../projects.html"><small>03</small><span>projetos</span></a></li>
+        <li><a href="../lab.html" aria-current="page"><small>04</small><span>laboratório</span></a></li>
+      </ul>
       <form class="busca" role="search" autocomplete="off">
         <label class="sr-only" for="busca">buscar no site</label>
         <input id="busca" type="search" placeholder="buscar no site...">
+        <kbd aria-hidden="true">/</kbd>
         <ul class="busca-res" aria-live="polite"></ul>
       </form>
     </nav>
-  </header>
-
+  </div>
+</header>
 <main id="conteudo">
-  <a class="back" href="../lab.html">← voltar pro laboratório</a>
-  <h1 class="page-title">Discord Rich Presence</h1>
-  <p class="lead">rust, cargo e um serviço do systemd rodando em segundo plano.</p>
+  <section class="pag-topo vermelho">
+    <div class="wrap">
+      <nav class="trilha mono" aria-label="Você está aqui"><ol><li><a href="../index.html">início</a></li><li><a href="../lab.html">laboratório</a></li><li aria-current="page">Discord Rich Presence</li></ol></nav>
+      <h1 class="pag-titulo"><span>Discord Rich Presence</span><small aria-hidden="true">código</small></h1>
+      <p class="pag-lead">rust, cargo e um serviço do systemd rodando em segundo plano.</p>
+    </div>
+  </section>
 
-  <article class="box paper">
-    <div class="prose">
+  <div class="wrap artigo">
+    <aside class="ficha papel" aria-label="Sobre esta nota">
+      <h2>sobre esta nota</h2>
+      <dl>
+        <dt>tipo</dt><dd>código</dd>
+        <dt>leitura</dt><dd>1 min</dd>
+        <dt>assuntos</dt><dd><ul class="tags"><li>rust</li><li>cargo</li><li>systemd</li></ul></dd>
+      </dl>
+      <div class="ficha-sub">
+        <h2>outras notas</h2>
+        <ul>
+          <li><a href="depuracao-graficos-linux.html">Depuração de gráficos no Linux</a></li>
+          <li><a href="wazuh-siem.html">Wazuh SIEM</a></li>
+          <li><a href="anotacoes-seguranca-web.html">Anotações de segurança web</a></li>
+          <li><a href="git-e-github.html">Git e GitHub</a></li>
+        </ul>
+      </div>
+      <div class="ficha-sub mono"><a href="../lab.html">← voltar pro laboratório</a></div>
+    </aside>
+
+    <article class="texto papel">
+      <div class="prose">
     <p>estilo ainda faz parte do projeto, não faz? e o nosso mercado de trabalho tá todo no discord e no linkedin. aparência chama gente boa.</p>
 
     <p>usei o <code>linux-discord-rich-presence</code>, que é feito em rust, e quase todo o meu contato com a linguagem veio daqui. cargo, rustc, compilar, resolver dependência, rodar. o projeto ficou em <code>~/linux-discord-rich-presence</code>, com a configuração num arquivo chamado <code>~/777-rpc.json</code>.</p>
@@ -54,16 +81,52 @@
     <p>depois configurei o <code>discord-rpc.service</code> pra ele rodar como serviço do sistema. isso me levou pra uma parte do linux que eu mal conhecia, rodar e gerenciar programa em segundo plano.</p>
 
     <p>rust não é minha linguagem principal hoje, mas serviu pra ver outro jeito de desenvolver e entender, num projeto de verdade, como compilação e dependência funcionam.</p>
-    </div>
-  </article>
-</main>
-</div>
+      </div>
+    </article>
+  </div>
 
-<footer>
-  © 2026 Karina Rodrigues · sete chaves ·
-  <a href="https://github.com/seventsky" target="_blank" rel="noopener">github</a> ·
-  <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">linkedin</a>
+  <nav class="wrap paginacao" aria-label="Outras notas"><a class="papel" href="git-e-github.html"><span class="mono">← nota anterior</span><b>Git e GitHub</b></a></nav>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-grid">
+      <div>
+        <a class="marca" href="../index.html" aria-label="Karina Rodrigues, página inicial">
+          <img src="../img/logo.webp" alt="" width="160" height="146">
+          <b>Karina <span>Rodrigues</span></b>
+        </a>
+        <p>segurança da informação, desenvolvimento web e escrita. rio de janeiro.</p>
+      </div>
+      <nav aria-label="Páginas">
+        <h2>páginas</h2>
+        <ul>
+          <li><a href="../index.html">início</a></li>
+          <li><a href="../sobre.html">sobre</a></li>
+          <li><a href="../projects.html">projetos</a></li>
+          <li><a href="../lab.html">laboratório</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>me acha aqui</h2>
+        <ul>
+          <li><a href="https://github.com/seventsky" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://tryhackme.com/p/s3te" target="_blank" rel="noopener">TryHackMe ↗</a></li>
+          <li><a href="https://x.com/setereveses" target="_blank" rel="noopener">X ↗</a></li>
+          <li><a href="https://discord.com/users/874118558521634826" target="_blank" rel="noopener">Discord ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim mono">
+      <span>© 2026 Karina Rodrigues · sete chaves · atualizado em 26 out 2026</span>
+      <span class="botoes">
+        <button type="button" data-reset-stickers>arrumar stickers</button>
+        <a class="link-seta" href="#conteudo">voltar ao topo ↑</a>
+      </span>
+    </div>
+  </div>
 </footer>
-<script src="../script.js?v=4"></script>
+<script src="../script.js?v=5"></script>
 </body>
 </html>

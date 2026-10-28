@@ -1,14 +1,19 @@
 /* =========================================================
-   KARINA RODRIGUES · estética vermelha
+   KARINA RODRIGUES · preto, vermelho e papel
    Organização:
    1. cores e fontes (variáveis)
    2. base
-   3. cabeçalho, menu e busca
-   4. caixas (o "bloco" que se repete no site todo)
+   3. peças que se repetem (botões, papel, janela, etiquetas)
+   4. cabeçalho, menu e busca
    5. home
-   6. páginas internas (projetos, laboratório, textos)
-   7. stickers
-   8. celular e acessibilidade
+   6. páginas internas (cabeçalho da página, artigo, listas)
+   7. rodapé
+   8. stickers
+   9. telas menores e acessibilidade
+
+   Regra da casa: texto corrido sempre em cima de fundo claro
+   (.papel / .janela). No preto e no vermelho só vão títulos
+   grandes e etiquetas curtas.
    ========================================================= */
 
 /* 1. CORES E FONTES ------------------------------------- */
@@ -21,343 +26,592 @@
   font-display:swap; /* mostra o texto com outra fonte enquanto ela carrega */
 }
 :root{
-  --bg:#120203;        /* fundo da janela */
-  --red:#b81f25;       /* vermelho principal da coluna */
-  --hot:#ff4040;       /* vermelho forte, pra destaque em fundo preto */
-  --blood:#7a0000;     /* vermelho escuro do gato */
-  --ink:#0e0708;       /* preto das caixas */
-  --paper:#f4e9df;     /* creme das caixas claras */
-  --paper-ink:#1a0a0b; /* texto em cima do creme */
-  --link:#9b0f14;      /* link em cima do creme */
-  --muted:#c9a7a3;     /* texto secundário em fundo preto */
-  --line:#000;
+  --preto:#0b0506;       /* fundo do site */
+  --tinta:#160809;       /* preto das barras e janelas */
+  --red:#c8161d;         /* vermelho principal */
+  --red-escuro:#7a0000;  /* vermelho do gato do logo */
+  --hot:#ff4a4a;         /* vermelho forte, só pra destaque em fundo preto */
+  --papel:#f3ece4;       /* creme das caixas claras */
+  --papel-2:#e6dbcf;     /* creme um tom abaixo (linhas, hover) */
+  --texto:#170a0b;       /* texto em cima do creme */
+  --texto-2:#5a4744;     /* texto secundário em cima do creme */
+  --cinza:#b09b97;       /* texto secundário em cima do preto */
+  --linha:#000;
 
-  --brush:"Cyber Brush","Pixelify Sans",Impact,sans-serif; /* títulos */
-  --pixel:"Pixelify Sans","Courier New",monospace;        /* menus, botões, etiquetas pequenas */
-  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --display:"Archivo","Arial Narrow",Impact,sans-serif;     /* títulos grandes */
+  --sans:"IBM Plex Sans",system-ui,sans-serif;               /* texto corrido */
+  --mono:"IBM Plex Mono",ui-monospace,monospace;             /* menus, etiquetas, botões */
+  --brush:"Cyber Brush","Pixelify Sans",Impact,sans-serif;   /* nome e assinatura */
+  --pixel:"Pixelify Sans","Courier New",monospace;
   --serif:"Instrument Serif",Georgia,serif;
+
+  --largura:1200px;
+  --respiro:24px;        /* margem lateral */
+  --sombra:8px 8px 0 var(--linha);
 }
 
 /* 2. BASE ------------------------------------------------ */
 *{box-sizing:border-box;margin:0;padding:0}
-html{font-family:var(--mono);font-size:16px;line-height:1.65;color:var(--paper);background:var(--bg)}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{
-  min-height:100vh;
-  padding:24px 16px 64px;
-  /* grade quadriculada + escurecido nas bordas + espinhos.
-     A imagem dos espinhos foi espelhada nas duas direções (img/fundo-espinhos.webp),
-     então ela se repete sem emenda em tela larga em vez de esticar. */
+  font-family:var(--sans);font-size:1rem;line-height:1.6;
+  color:var(--papel);
+  /* grade quadriculada vermelha bem fraquinha em cima do preto */
   background:
-    linear-gradient(rgba(255,64,64,.07) 1px,transparent 1px) 0 0/32px 32px,
-    linear-gradient(90deg,rgba(255,64,64,.07) 1px,transparent 1px) 0 0/32px 32px,
-    radial-gradient(ellipse at 50% 30%,transparent 40%,rgba(18,2,3,.75) 100%),
-    url("img/fundo-espinhos.webp") center top/1800px auto repeat;
-  background-color:var(--bg);
-  background-attachment:fixed;
+    linear-gradient(rgba(255,74,74,.055) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg,rgba(255,74,74,.055) 1px,transparent 1px) 0 0/40px 40px,
+    var(--preto);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-underline-offset:3px}
-a:hover{color:var(--hot)}
-:focus-visible{outline:3px dashed var(--hot);outline-offset:3px}
-::selection{background:var(--hot);color:var(--ink)}
-h1,h2,h3{font-family:var(--pixel);font-weight:500;line-height:1.1}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+::selection{background:var(--red);color:#fff}
+h1,h2,h3{line-height:1.05;font-weight:800}
 p{margin-bottom:14px}
 p:last-child{margin-bottom:0}
-.pular{position:absolute;left:-9999px;top:8px;z-index:50;background:var(--hot);color:var(--ink);padding:8px 14px;font-weight:500}
+.pular{position:absolute;left:-9999px;top:8px;z-index:60;background:var(--red);color:#fff;padding:10px 16px;font:500 .9rem var(--mono)}
 .pular:focus{left:16px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* a "coluna" vermelha que segura tudo */
-.page{
-  position:relative;
-  max-width:880px;margin:0 auto;
-  border:3px solid var(--line);
-  /* pontinhos de retícula em cima do vermelho */
-  background:radial-gradient(rgba(0,0,0,.22) 1.2px,transparent 1.7px) 0 0/8px 8px,var(--red);
-  padding:0 20px 28px;
+/* caixa central que alinha tudo na mesma coluna */
+.wrap{max-width:var(--largura);margin:0 auto;padding:0 var(--respiro)}
+
+/* fundo vermelho com pontinhos de retícula (hero, contato, topo das páginas) */
+.vermelho{
+  background:
+    radial-gradient(rgba(0,0,0,.2) 1.2px,transparent 1.7px) 0 0/8px 8px,
+    var(--red);
+  border-bottom:3px solid var(--linha);
 }
 
-/* 3. CABEÇALHO, MENU E BUSCA ----------------------------- */
-.updated{
-  margin:0 -20px;padding:2px 12px;
-  background:var(--line);color:var(--muted);
-  font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
-}
-.titlebar{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  margin:12px 0 0;padding:8px 14px;
-  background:var(--ink);border:3px solid var(--line);
-}
-.logo{font-family:var(--brush);font-size:clamp(1.7rem,5vw,2.5rem);line-height:1.1;color:var(--hot);text-decoration:none;letter-spacing:.03em;text-shadow:2px 2px 0 var(--blood)}
-.logo:hover{color:var(--paper)}
-.chip{
-  font:500 .75rem var(--mono);text-transform:uppercase;
-  background:var(--hot);color:var(--ink);border:2px solid var(--line);
-  padding:4px 10px;cursor:pointer;text-decoration:none;
-}
-.chip:hover{background:var(--paper);color:var(--ink)}
+/* 3. PEÇAS QUE SE REPETEM -------------------------------- */
+/* etiquetinha em mono, caixa alta */
+.mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
 
-.menu{
-  display:flex;align-items:center;justify-content:space-between;gap:10px 16px;flex-wrap:wrap;
-  padding:8px 14px;margin-bottom:28px;
-  background:var(--paper);color:var(--paper-ink);
-  border:3px solid var(--line);border-top:0;
+/* caixa clara (onde vai o texto) */
+.papel{
+  background:var(--papel);color:var(--texto);
+  border:3px solid var(--linha);box-shadow:var(--sombra);
 }
-.menu .links{display:flex;flex-wrap:wrap;gap:4px 0;font-family:var(--pixel);font-size:1.05rem}
-.menu .links a{text-decoration:none;padding:0 8px}
-.menu .links a + a{border-left:2px solid var(--paper-ink)}
-.menu .links a::first-letter{text-decoration:underline;text-underline-offset:3px}
-.menu .links a:hover{color:var(--link)}
-.menu .links a[aria-current]{background:var(--ink);color:var(--hot)}
+.papel a{color:var(--red-escuro)}
+.papel a:hover{color:var(--red)}
+
+/* janela estilo sistema: barra preta com nome do "arquivo" + botõezinhos */
+.janela{background:var(--papel);color:var(--texto);border:3px solid var(--linha);box-shadow:var(--sombra)}
+.janela-barra{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  background:var(--tinta);color:var(--papel);
+  font:500 .72rem/1 var(--mono);letter-spacing:.04em;
+  padding:8px 10px;border-bottom:3px solid var(--linha);
+}
+.janela-barra .bt{display:flex;gap:4px}
+.janela-barra .bt i{
+  width:16px;height:16px;display:grid;place-items:center;
+  border:1.5px solid var(--papel);font-style:normal;font-size:.6rem;line-height:1;
+}
+.janela-barra .bt i:last-child{background:var(--red);border-color:var(--red)}
+
+/* botões */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:44px;padding:0 18px;
+  font:500 .8rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  border:2px solid var(--linha);box-shadow:4px 4px 0 var(--linha);
+  cursor:pointer;transition:transform .12s,box-shadow .12s,background .12s;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--linha)}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--linha)}
+.papel .btn-red,.btn-red{background:var(--red);color:#fff}
+.papel .btn-red:hover,.btn-red:hover{background:var(--texto);color:#fff}
+.papel .btn-preto,.btn-preto{background:var(--tinta);color:var(--papel)}
+.papel .btn-preto:hover,.btn-preto:hover{background:var(--red);color:#fff}
+.papel .btn-claro,.btn-claro{background:var(--papel);color:var(--texto)}
+.papel .btn-claro:hover,.btn-claro:hover{background:var(--texto);color:var(--papel)}
+.botoes{display:flex;flex-wrap:wrap;gap:12px 14px}
+
+/* link de texto com seta (↗ / →) */
+.link-seta{font:500 .8rem var(--mono);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:1px}
+.link-seta:hover{color:var(--red)}
+
+/* etiqueta gritada, tipo "OH WOW" das colagens */
+.grito{
+  display:inline-block;
+  font:800 1rem/1 var(--display);font-stretch:80%;letter-spacing:.02em;text-transform:uppercase;
+  background:var(--tinta);color:var(--papel);
+  border:3px solid var(--linha);box-shadow:4px 4px 0 var(--linha);
+  padding:7px 12px 6px;transform:rotate(-4deg);
+}
+.grito.red{background:var(--red);color:#fff}
+
+/* caixa de seleção (aquele retângulo com quadradinhos nos cantos) */
+.selecao{position:relative}
+.selecao::before,.selecao::after{content:"";position:absolute;pointer-events:none}
+.selecao::before{inset:-14px;border:2px solid var(--linha)}
+.selecao::after{
+  inset:-19px;
+  background:
+    linear-gradient(var(--linha),var(--linha)) left top/12px 12px no-repeat,
+    linear-gradient(var(--linha),var(--linha)) right top/12px 12px no-repeat,
+    linear-gradient(var(--linha),var(--linha)) left bottom/12px 12px no-repeat,
+    linear-gradient(var(--linha),var(--linha)) right bottom/12px 12px no-repeat;
+}
+
+/* lista de tags */
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
+.tags li{font:500 .72rem/1 var(--mono);letter-spacing:.03em;border:1.5px solid currentColor;padding:5px 8px}
+
+/* cabeçalho de seção: [01] TÍTULO .......... ver tudo → */
+.secao{padding-top:112px;position:relative}
+.secao-cab{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:6px 18px;
+  padding-bottom:18px;margin-bottom:36px;border-bottom:3px solid var(--red);
+}
+.secao-num{align-self:start;margin-top:6px;font:500 .8rem/1 var(--mono);background:var(--red);color:#fff;padding:6px 8px;border:2px solid var(--linha)}
+.secao-titulo{font:800 clamp(2.2rem,5.5vw,4rem)/.92 var(--display);font-stretch:72%;text-transform:uppercase;letter-spacing:-.005em;color:var(--papel)}
+.secao-desc{grid-column:2;color:var(--cinza);font:400 .9rem/1.5 var(--mono);max-width:56ch}
+.secao-cab .link-seta{grid-column:3;grid-row:1;color:var(--papel);white-space:nowrap}
+.secao-cab .link-seta:hover{color:var(--hot)}
+
+/* 4. CABEÇALHO, MENU E BUSCA ----------------------------- */
+.topo{position:sticky;top:0;z-index:40;background:var(--papel);color:var(--texto);border-bottom:3px solid var(--linha)}
+.topo-in{max-width:var(--largura);margin:0 auto;padding:0 var(--respiro);height:68px;display:flex;align-items:center;gap:20px}
+
+/* logo: gatinho + nome, tipo "ícone + Claude Code" */
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto);flex-shrink:0;margin-right:auto}
+.marca img{width:40px;height:auto;transition:transform .2s}
+.marca:hover img{transform:rotate(-10deg) scale(1.08)}
+.marca b{font:800 1.3rem/1 var(--display);font-stretch:70%;letter-spacing:.01em;text-transform:uppercase}
+.marca b span{color:var(--red)}
+
+.nav{display:flex;align-items:center;gap:20px;height:100%}
+.nav ul{list-style:none;display:grid;grid-template-columns:repeat(4,7.8rem);height:100%}
+.nav li a{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  height:100%;text-decoration:none;
+  border-left:2px solid var(--linha);
+  font:500 .92rem/1 var(--mono);
+}
+.nav li:last-child a{border-right:2px solid var(--linha)}
+.nav li a small{font-size:.62rem;letter-spacing:.08em;color:var(--texto-2)}
+/* o texto do link troca de fonte no hover (o script escolhe qual).
+   Como as colunas têm largura fixa, o menu não "pula" quando a fonte muda. */
+.nav li a span{white-space:nowrap;font-size:1em}
+.nav li a:hover,.nav li a:focus-visible{background:var(--tinta);color:var(--hot)}
+.nav li a:hover small,.nav li a:focus-visible small{color:var(--cinza)}
+.nav li a[aria-current]{background:var(--red);color:#fff}
+.nav li a[aria-current] small{color:#fff}
+
+.menu-btn{display:none}
 
 /* busca */
-.busca{position:relative;flex:1 1 200px;max-width:280px}
+.busca{position:relative;width:230px}
 .busca input{
-  width:100%;font:inherit;font-size:.85rem;
-  padding:4px 34px 4px 10px;
-  background:var(--ink);color:var(--paper);border:2px solid var(--line);
+  width:100%;height:40px;font:400 .85rem var(--mono);
+  padding:0 40px 0 12px;
+  background:var(--tinta);color:var(--papel);border:2px solid var(--linha);border-radius:0;
+  -webkit-appearance:none;appearance:none;
 }
-.busca input::placeholder{color:var(--muted)}
-.busca::after{content:"⌕";position:absolute;right:0;top:0;bottom:0;width:30px;display:grid;place-items:center;background:var(--line);color:var(--paper);pointer-events:none}
+.busca input::placeholder{color:var(--cinza)}
+.busca input::-webkit-search-cancel-button{display:none}
+.busca kbd{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  font:500 .7rem/1 var(--mono);color:var(--cinza);border:1.5px solid var(--cinza);padding:3px 6px;pointer-events:none;
+}
 .busca-res{
-  position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);
-  list-style:none;background:var(--ink);border:2px solid var(--line);box-shadow:4px 4px 0 var(--line);
-  max-height:260px;overflow:auto;
+  position:absolute;z-index:50;left:0;right:0;top:calc(100% + 6px);
+  list-style:none;background:var(--tinta);border:2px solid var(--linha);box-shadow:6px 6px 0 var(--linha);
+  max-height:300px;overflow:auto;
 }
 .busca-res:empty{display:none}
-.busca-res a{display:block;padding:6px 10px;color:var(--paper);text-decoration:none;font-size:.85rem}
-.busca-res a small{display:block;color:var(--muted);font-size:.72rem}
-.busca-res a:hover,.busca-res a:focus{background:var(--hot);color:var(--ink);outline:none}
-.busca-res a:hover small,.busca-res a:focus small{color:var(--ink)}
-.busca-res .vazio{padding:6px 10px;color:var(--muted);font-size:.85rem}
-
-/* 4. CAIXAS ---------------------------------------------- */
-/* .box = caixa preta | .box.paper = caixa creme */
-.box{
-  position:relative;
-  background:var(--ink);color:var(--paper);
-  border:3px solid var(--line);box-shadow:6px 6px 0 var(--line);
-  padding:18px 18px 16px;
-}
-.box.paper{background:var(--paper);color:var(--paper-ink)}
-.box.paper a{color:var(--link)}
-.box.paper a:hover{color:var(--paper-ink);background:var(--hot)}
-
-/* etiqueta ">> TÍTULO !!" que fica em cima da caixa */
-.label{
-  display:inline-block;
-  font-family:var(--brush);font-weight:400;font-size:1.25rem;line-height:1.3;letter-spacing:.03em;
-  background:var(--line);color:var(--hot);
-  padding:2px 12px;margin-bottom:10px;
-  border:2px solid var(--line);
-}
-.box > .label:first-child{position:absolute;top:-16px;left:12px;margin:0}
-.box:has(> .label:first-child){padding-top:26px}
-
-/* caixa com rolagem e barra de rolagem estilizada */
-.scroll{max-height:220px;overflow-y:auto;padding-right:10px;scrollbar-width:thin;scrollbar-color:var(--hot) transparent}
-.scroll::-webkit-scrollbar{width:10px}
-.scroll::-webkit-scrollbar-track{background:transparent;border-left:2px solid currentColor}
-.scroll::-webkit-scrollbar-thumb{background:var(--hot);border:2px solid var(--line)}
-.scroll-hint{display:block;text-align:center;font-size:.8rem;color:var(--muted);margin-top:8px}
-.paper .scroll-hint{color:var(--link)}
-
-/* lista de "tags" (stack, interesses) */
-.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none}
-.tags li{border:2px solid currentColor;padding:1px 8px;font-size:.85rem}
-.tags li:hover{background:var(--hot);color:var(--ink);border-color:var(--hot)}
-
-.grid{display:grid;gap:36px 24px;margin-bottom:40px}
-.section{margin-bottom:40px}
-.grid.two{grid-template-columns:1fr 1fr}
-.grid.avatar-row{grid-template-columns:240px 1fr}
+.busca-res a{display:block;padding:9px 12px;color:var(--papel);text-decoration:none;font:400 .85rem/1.35 var(--sans)}
+.busca-res a small{display:block;color:var(--cinza);font:500 .66rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.busca-res a:hover,.busca-res a:focus{background:var(--red);color:#fff;outline:none}
+.busca-res a:hover small,.busca-res a:focus small{color:#fff}
+.busca-res .vazio{padding:9px 12px;color:var(--cinza);font:400 .85rem var(--mono)}
 
 /* 5. HOME ------------------------------------------------ */
-.avatar{padding:0;align-self:start}
-.avatar img{width:100%;height:auto}
-.avatar-tag{
-  position:absolute;left:-3px;right:-3px;bottom:-34px;
-  font-family:var(--pixel);background:var(--line);color:var(--paper);padding:2px 10px;font-size:.95rem;
+.hero-sec{padding:28px 0 72px;position:relative;overflow:hidden}
+/* espinhos bem de leve por trás do vermelho */
+.hero-sec::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:url("img/fundo-espinhos.webp") center/1400px auto;
+  mix-blend-mode:multiply;opacity:.35;
 }
+.hero-sec > .wrap{position:relative}
 
-/* nome interativo */
-.hero{
-  position:relative;
-  min-height:190px;
-  display:grid;place-items:center;
-  overflow:hidden;
-  cursor:crosshair;
-  touch-action:pan-y; /* no celular, deixa rolar a página na vertical */
-  margin:-8px -8px 14px;
-  background:var(--ink);
-  border:3px solid var(--line);
+/* linha de informações em cima do pôster */
+.hero-meta{
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;
+  color:#fff;padding-bottom:12px;margin-bottom:28px;border-bottom:2px solid var(--linha);
 }
+.hero-meta span:first-child::before{content:"■ ";color:var(--linha)}
+
+.hero-grid{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:28px 48px;align-items:start}
+
+/* nome interativo: cada palavra é uma barra de papel (pôster) */
+.hero{position:relative;cursor:crosshair;touch-action:pan-y}
 .name{
   position:relative; /* necessário pro script medir as letras */
-  font-size:clamp(2rem,6.4vw,3.9rem);line-height:1;text-align:center;text-transform:uppercase;
   font-family:var(--brush);font-weight:400;
-  color:var(--hot);user-select:none;padding:18px 12px;
-  text-shadow:3px 3px 0 var(--blood);
+  font-size:clamp(2.6rem,7vw,6.3rem);line-height:1;text-transform:uppercase;
+  color:var(--texto);user-select:none;
 }
-.name .w{display:block;white-space:nowrap}
-.name .l{display:inline-block;will-change:transform;text-decoration-thickness:4px;text-underline-offset:8px}
+.name .w{
+  display:flex;align-items:center;white-space:nowrap;overflow:hidden;
+  background:var(--papel);border:3px solid var(--linha);box-shadow:var(--sombra);
+  padding:.1em .14em .02em;margin-bottom:10px;
+  text-shadow:.04em .04em 0 var(--red);
+}
+/* número da barra, cantinho direito (01, 02) */
+.name .w::after{
+  margin-left:auto;align-self:flex-end;padding:0 0 .35em .5em;
+  font:500 .8rem/1 var(--mono);letter-spacing:normal;color:var(--texto-2);text-shadow:none;text-decoration:none;
+}
+.name .w:first-child::after{content:"01"}
+.name .w:nth-child(2)::after{content:"02"}
+.name .l{display:inline-block;will-change:transform;text-decoration-thickness:.06em;text-underline-offset:.1em}
 .name.sublinhado .l{text-decoration:underline}
-.hero .state{position:absolute;right:10px;top:6px;font-size:.7rem;color:var(--muted);text-align:right;white-space:pre-line}
-.hero .hint{position:absolute;left:10px;bottom:4px;font-size:.7rem;color:var(--muted)}
+.hero-info{display:flex;justify-content:space-between;gap:16px;margin-top:2px;color:#fff}
+.hero .state{white-space:pre-line;text-align:right}
 .so-toque{display:none}
 @media (hover:none),(pointer:coarse){.so-mouse{display:none}.so-toque{display:inline}}
 
-/* faixa que corre (marquee) */
-.ticker{
-  overflow:hidden;white-space:nowrap;
-  background:var(--paper);color:var(--paper-ink);
-  border:3px solid var(--line);box-shadow:6px 6px 0 var(--line);
-  font-family:var(--pixel);font-size:1.1rem;
-  margin:52px 0 44px;padding:4px 0;
+/* barra preta com as três áreas */
+.faixa-preta{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  background:var(--tinta);color:var(--papel);border:3px solid var(--linha);box-shadow:var(--sombra);
+  padding:14px 16px;margin:18px 0 28px;
 }
-.ticker span{display:inline-block;padding-left:100%;animation:corre 26s linear infinite}
-.ticker:hover span{animation-play-state:paused}
-@keyframes corre{to{transform:translateX(-100%)}}
+.faixa-preta p{font:800 clamp(1.05rem,2.3vw,1.6rem)/1.1 var(--display);font-stretch:75%;text-transform:uppercase;letter-spacing:.01em}
+.faixa-preta p i{font-style:normal;color:var(--hot)}
+.faixa-preta .mono{color:var(--cinza);align-self:flex-end}
 
-/* cartões de projeto */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{display:flex;flex-direction:column;gap:8px}
-.card h2,.card h3{font-family:var(--brush);font-weight:400;font-size:1.7rem;line-height:1.15}
-.card .fav{font:500 .7rem var(--mono);background:var(--hot);color:var(--ink);border:2px solid var(--line);padding:0 6px;vertical-align:middle;white-space:nowrap}
-.card p{font-size:.85rem;color:var(--muted)}
-.paper .card p{color:inherit}
-.thumb{
-  aspect-ratio:16/10;border:3px solid var(--line);
-  background:repeating-linear-gradient(45deg,var(--blood) 0 10px,var(--red) 10px 20px);
-  display:grid;place-items:center;overflow:hidden;
-}
-.thumb img{width:100%;height:100%;object-fit:cover}
-.thumb span{background:var(--line);color:var(--paper);font-size:.75rem;padding:2px 8px}
-.thumb.sem-print img{width:62%;height:auto;object-fit:contain;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.45))}
-.card .thumb img{transition:transform .25s}
-.card:hover .thumb:not(.sem-print) img{transform:scale(1.04)}
+.intro{padding:26px 28px}
+.intro .lede{font:600 clamp(1.2rem,2.2vw,1.45rem)/1.3 var(--sans);margin-bottom:12px;max-width:34ch}
+.intro p{max-width:60ch;color:var(--texto)}
+.intro .botoes{margin-top:22px}
 
-/* print grande na página do projeto */
-.shot{margin:0 0 36px}
-.shot a{display:block;border:3px solid var(--line);box-shadow:6px 6px 0 var(--line);background:var(--line)}
-.shot img{width:100%;height:auto}
-.shot figcaption{margin-top:10px;font-size:.8rem;color:var(--paper);text-shadow:1px 1px 0 var(--line)}
-.acts{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:auto;font-size:.9rem}
+/* coluna da direita do hero: avatar + "estudando agora" */
+.hero-lado{display:grid;gap:44px;padding-top:6px}
+.avatar-wrap{position:relative;margin:14px 14px 0}
+.avatar-wrap .janela img{width:100%;height:auto;aspect-ratio:480/576;object-fit:cover}
+.avatar-wrap figcaption{padding:8px 10px;font:500 .7rem var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--texto-2);border-top:3px solid var(--linha)}
+.avatar-wrap .grito{position:absolute;left:-26px;top:38%;z-index:2}
 
-/* linha do tempo */
-.timeline{list-style:none;border-left:3px solid var(--hot);padding-left:22px;margin-left:6px}
-.timeline li{position:relative;padding-bottom:16px}
-.timeline li:last-child{padding-bottom:0}
-.timeline li::before{content:"";position:absolute;left:-31px;top:7px;width:12px;height:12px;background:var(--hot);border:2px solid var(--line)}
-.timeline b{font-family:var(--pixel);font-size:1.2rem;font-weight:500;display:block;color:var(--hot)}
-.timeline li:last-child::before{animation:pisca 1s steps(1) infinite}
+.agora{padding:18px 20px}
+.agora h2{font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2);display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.agora h2::before{content:"";width:9px;height:9px;background:var(--red);border-radius:50%;animation:pisca 1.2s steps(1) infinite}
+.agora ul{list-style:none}
+.agora li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1.5px dashed var(--papel-2);font-size:.92rem}
+.agora li:first-child{border-top:0;padding-top:0}
+.agora li span{font:500 .7rem var(--mono);color:var(--texto-2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
 @keyframes pisca{50%{opacity:0}}
 
-/* botões de contato */
-.contatos{display:flex;flex-wrap:wrap;gap:10px}
-.box .contatos a{
-  font-family:var(--pixel);font-size:1rem;text-decoration:none;
-  background:var(--ink);color:var(--paper);
-  border:3px solid var(--line);box-shadow:4px 4px 0 var(--line);
-  padding:4px 14px;transition:transform .1s,box-shadow .1s;
+/* faixa que corre (marquee). O texto vem duplicado no HTML pra emendar sem buraco. */
+.ticker{
+  overflow:hidden;white-space:nowrap;
+  background:var(--papel);color:var(--texto);
+  border-bottom:3px solid var(--linha);
+  font:500 .85rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+  padding:14px 0;
 }
-.box .contatos a:hover{background:var(--hot);color:var(--ink);transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--line)}
+.ticker-in{display:inline-flex;animation:corre 45s linear infinite}
+.ticker-in span{padding-right:22px}
+.ticker-in i{font-style:normal;color:var(--red);padding-right:22px}
+.ticker:hover .ticker-in{animation-play-state:paused}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* o que eu faço */
+.frentes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.frente{display:flex;flex-direction:column;gap:14px;padding:22px 22px 24px;transition:transform .15s,box-shadow .15s}
+.frente:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--linha)}
+.frente-topo{display:flex;justify-content:space-between;align-items:flex-start}
+.frente-icone{width:48px;height:48px;display:grid;place-items:center;background:var(--tinta);color:var(--hot);border:2px solid var(--linha)}
+.frente-icone svg{width:24px;height:24px}
+.frente-topo .mono{color:var(--texto-2)}
+.frente h3{font:800 1.75rem/1 var(--display);font-stretch:75%;text-transform:uppercase;margin-top:8px}
+.frente p{font-size:.95rem;color:var(--texto-2)}
+.frente .tags{margin-top:auto;padding-top:6px;color:var(--texto)}
+
+/* cartões de projeto */
+.projetos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+/* o projeto favorito ocupa a linha toda: print na esquerda, texto na direita */
+.projetos .destaque{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
+.destaque .janela-barra{grid-column:1/-1}
+.destaque .thumb{border-bottom:0;border-right:3px solid var(--linha);aspect-ratio:auto;min-height:100%}
+.destaque .projeto-corpo{padding:28px 30px 30px}
+.projeto{display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.projeto:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--linha)}
+.thumb{
+  display:grid;place-items:center;overflow:hidden;aspect-ratio:16/9;
+  background:repeating-linear-gradient(45deg,var(--red-escuro) 0 12px,var(--red) 12px 24px);
+  border-bottom:3px solid var(--linha);
+}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .3s}
+.projeto:hover .thumb img{transform:scale(1.03)}
+.thumb.sem-print img{width:auto;height:72%;object-fit:contain;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.5))}
+.projeto-corpo{display:flex;flex-direction:column;gap:12px;padding:20px 22px 22px;flex:1}
+.projeto-kicker{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--texto-2)}
+.selo{font:500 .68rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;background:var(--red);color:#fff;border:2px solid var(--linha);padding:4px 7px;white-space:nowrap}
+.projeto h3{font:800 2rem/1 var(--display);font-stretch:75%;text-transform:uppercase}
+.destaque h3{font-size:clamp(2.2rem,4vw,3rem)}
+.projeto h3 a{text-decoration:none;color:var(--texto)}
+.projeto h3 a:hover{color:var(--red)}
+.projeto p{color:var(--texto-2);font-size:.95rem;max-width:56ch}
+.projeto .acoes{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:auto;padding-top:8px}
+.projeto .acoes .link-seta{color:var(--texto)}
+.projeto .acoes .link-seta:hover{color:var(--red)}
+
+/* laboratório + linha do tempo, lado a lado */
+.duas{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:start}
+.duas > div > .mono-tit{display:block;margin-bottom:12px;color:var(--cinza)}
+
+/* lista de notas (usada na home e no laboratório) */
+.notas{list-style:none}
+.notas li + li{border-top:2px solid var(--linha)}
+.notas a{
+  display:grid;grid-template-columns:84px minmax(0,1fr) auto;gap:4px 18px;align-items:center;
+  padding:18px 20px;text-decoration:none;color:var(--texto);
+  transition:background .12s,color .12s;
+}
+.notas .tipo{grid-row:span 2;align-self:start;margin-top:4px;font:500 .66rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1.5px solid currentColor;padding:5px 6px;text-align:center}
+.notas strong{font:800 1.35rem/1.1 var(--display);font-stretch:80%;text-transform:uppercase}
+.notas small{grid-column:2;font-size:.88rem;color:var(--texto-2)}
+.notas .seta{grid-row:1/span 2;grid-column:3;font:500 1.2rem var(--mono);transition:transform .15s}
+.notas a:hover{background:var(--tinta);color:var(--papel)}
+.notas a:hover small{color:var(--cinza)}
+.notas a:hover .tipo{color:var(--hot)}
+.notas a:hover .seta{transform:translateX(4px);color:var(--hot)}
+.notas li[hidden]{display:none}
+
+/* filtro do laboratório */
+.filtro{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:24px}
+.filtro .mono{color:var(--cinza);margin-right:4px}
+.filtro button{
+  min-height:40px;padding:0 14px;cursor:pointer;
+  font:500 .78rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;
+  background:var(--papel);color:var(--texto);border:2px solid var(--linha);box-shadow:3px 3px 0 var(--linha);
+}
+.filtro button:hover{background:var(--papel-2)}
+.filtro button[aria-pressed="true"]{background:var(--red);color:#fff}
+.filtro button small{opacity:.7;margin-left:4px}
+
+/* linha do tempo */
+.tempo{padding:22px 24px}
+.tempo ol{list-style:none;position:relative;padding-left:28px}
+.tempo ol::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:3px;background:var(--red)}
+.tempo li{position:relative;padding-bottom:18px;display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:baseline}
+.tempo li:last-child{padding-bottom:0}
+.tempo li::before{content:"";position:absolute;left:-27px;top:7px;width:13px;height:13px;background:var(--red);border:2px solid var(--linha)}
+.tempo b{font:800 1.35rem/1 var(--display);font-stretch:75%;color:var(--red-escuro)}
+.tempo li:last-child::before{background:var(--linha);animation:pisca 1s steps(1) infinite}
+
+/* contato */
+.contato-sec{margin-top:120px;border-top:3px solid var(--linha);padding:80px 0 88px;position:relative}
+.contato-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px 56px;align-items:center}
+.contato-titulo{
+  font:400 clamp(3rem,7vw,5.6rem)/.95 var(--brush);color:var(--papel);
+  text-shadow:5px 5px 0 var(--linha);margin:22px 0 26px;
+}
+.contato-texto{max-width:46ch;margin-bottom:28px;padding:16px 18px;font-size:1.02rem}
+.contatos{list-style:none}
+.contatos li + li{border-top:2px solid var(--linha)}
+.contatos a{
+  display:grid;grid-template-columns:120px 1fr auto;gap:12px;align-items:center;
+  padding:14px 18px;min-height:56px;text-decoration:none;color:var(--texto);
+}
+.papel .contatos a,.janela .contatos a{color:var(--texto)}
+.contatos b{font:800 1.2rem/1 var(--display);font-stretch:80%;text-transform:uppercase}
+.contatos span{font:400 .85rem var(--mono);color:var(--texto-2)}
+.contatos i{font-style:normal;font-family:var(--mono)}
+.contatos a:hover{background:var(--red);color:#fff}
+.contatos a:hover span{color:#fff}
+
+.gato-grande{position:relative;width:100%;max-width:420px;margin-left:auto;transform:rotate(2deg)}
+.gato-grande img{width:100%;height:auto}
+.gato-grande .grito{position:absolute;right:-18px;top:-22px;z-index:2;transform:rotate(6deg)}
 
 /* 6. PÁGINAS INTERNAS ------------------------------------ */
-.page-title{font-family:var(--brush);font-weight:400;font-size:clamp(2.6rem,9vw,4rem);line-height:1.1;color:var(--paper);text-shadow:4px 4px 0 var(--line);margin:8px 0 10px;padding-left:.12em /* as letras inclinadas "vazam" pra esquerda */}
-.lead{max-width:64ch;margin-bottom:36px;color:var(--paper);text-shadow:1px 1px 0 var(--line)}
-.back{display:inline-block;margin-bottom:18px;font-size:.9rem;background:var(--line);color:var(--paper);padding:2px 10px;text-decoration:none}
-.back:hover{color:var(--hot)}
+/* topo vermelho das páginas internas, com o título numa barra de papel */
+.pag-topo{padding:22px 0 56px}
+.trilha ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;color:#fff;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid var(--linha)}
+.trilha li + li::before{content:"/";margin-right:10px;color:var(--linha)}
+.trilha a{color:#fff;text-decoration:none;border-bottom:1.5px solid}
+.trilha a:hover{color:var(--linha)}
+.pag-titulo{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+  background:var(--papel);color:var(--texto);border:3px solid var(--linha);box-shadow:var(--sombra);
+  padding:.16em .2em .08em;
+  font:800 clamp(2.6rem,7.5vw,5.6rem)/.92 var(--display);font-stretch:70%;text-transform:uppercase;letter-spacing:-.01em;
+}
+.pag-titulo small{font:500 .8rem/1 var(--mono);color:var(--texto-2);padding-bottom:.4em;white-space:nowrap}
+.pag-lead{
+  background:var(--tinta);color:var(--papel);border:3px solid var(--linha);box-shadow:var(--sombra);
+  margin-top:14px;padding:14px 18px;max-width:780px;
+  font:500 1.05rem/1.5 var(--sans);
+}
 
-/* lista do laboratório */
-.list{list-style:none}
-.list li{display:grid;grid-template-columns:80px 1fr auto;gap:12px;align-items:baseline;padding:14px 0;border-top:2px dashed currentColor}
-.list li:first-child{border-top:0;padding-top:0}
-.list li:last-child{padding-bottom:0}
-.list .kind{font-size:.8rem;text-transform:uppercase;opacity:.75}
-.list h2,.list h3{font-family:var(--brush);font-weight:400;font-size:1.45rem;line-height:1.2}
+/* artigo: ficha na esquerda, texto na direita */
+.artigo{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px;align-items:start;padding-top:64px}
+.ficha{position:sticky;top:96px;padding:20px 22px 22px}
+.ficha h2{font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2);margin-bottom:14px}
+.ficha dl{display:grid;grid-template-columns:auto 1fr;gap:0 16px;font-size:.9rem}
+.ficha dt,.ficha dd{padding:9px 0;border-top:1.5px dashed var(--papel-2)}
+.ficha dt:first-of-type,.ficha dd:first-of-type{border-top:0;padding-top:0}
+.ficha dt{font:500 .7rem/1.9 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--texto-2)}
+.ficha .botoes{margin-top:20px;flex-direction:column}
+.ficha .botoes .btn{width:100%}
+.ficha .tags{margin-top:4px}
+.ficha-sub{margin-top:24px;padding-top:16px;border-top:3px solid var(--linha)}
+.ficha-sub ul{list-style:none;font-size:.9rem}
+.ficha-sub li{padding:6px 0}
+.ficha-sub a{text-decoration:none}
+.ficha-sub a:hover{text-decoration:underline}
 
-/* ficha técnica do estudo de caso */
-.meta{display:grid;grid-template-columns:100px 1fr;gap:4px 16px;margin:0 0 24px;font-size:.9rem;padding-bottom:16px;border-bottom:2px dashed currentColor}
-.meta dt{opacity:.7}
+.texto{padding:40px 48px 44px}
+.ficha > .janela{box-shadow:none;margin-bottom:20px}
+.ficha > .janela img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center 20%}
+.pag-corpo{padding-top:64px;position:relative}
+
+/* print grande no estudo de caso */
+.print{margin-top:64px}
+.print a{display:block;background:var(--tinta)}
+.print img{width:100%;height:auto}
+.print figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-top:3px solid var(--linha);color:var(--texto-2)}
 
 /* texto longo */
-.prose{max-width:68ch}
-.prose h2{font-family:var(--brush);font-weight:400;font-size:1.9rem;line-height:1.15;margin:36px 0 12px;color:var(--link)}
-.prose h3{font-size:1.25rem;margin:28px 0 10px}
-.prose code{background:var(--ink);color:var(--hot);padding:0 6px;font-size:.88em}
-.prose pre{background:var(--ink);color:var(--paper);padding:14px 16px;overflow-x:auto;margin-bottom:16px}
-.prose pre code{padding:0}
-.prose .todo{border:2px dashed var(--link);padding:12px 14px;font-size:.9rem}
-.assinatura{font-family:var(--brush);font-size:2rem;color:var(--link);text-align:right}
+.prose{max-width:66ch;font-size:1.06rem;line-height:1.75}
+.prose > p:first-child{font-size:1.22rem;line-height:1.55;font-weight:500}
+.prose p{margin-bottom:1.1em}
+.prose h2{font:800 2rem/1 var(--display);font-stretch:75%;text-transform:uppercase;color:var(--red-escuro);margin:1.8em 0 .6em;padding-top:.6em;border-top:3px solid var(--linha)}
+.prose h3{font:700 1.2rem/1.2 var(--sans);margin:1.6em 0 .5em}
+.prose code{background:var(--tinta);color:var(--hot);padding:1px 6px;font:400 .86em var(--mono);white-space:nowrap}
+.prose pre{background:var(--tinta);color:var(--papel);padding:14px 16px;overflow-x:auto;margin-bottom:16px}
+.prose pre code{padding:0;white-space:pre}
+.prose .todo{border:2px dashed var(--red-escuro);padding:16px 18px;font-size:.95rem;background:var(--papel-2)}
+.prose .todo p{font-size:inherit;font-weight:400}
+.assinatura{font-family:var(--brush);font-size:2.4rem;color:var(--red);text-align:right;margin-top:24px}
 
-footer{width:fit-content;max-width:880px;margin:24px auto 0;padding:2px 12px;font-size:.8rem;color:var(--muted);text-align:center;background:var(--line)}
-footer a{color:var(--muted)}
+/* anterior / próximo no fim do artigo */
+.paginacao{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:56px}
+.paginacao a{display:flex;flex-direction:column;gap:6px;padding:18px 20px;text-decoration:none;transition:transform .12s,box-shadow .12s}
+.paginacao a:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--linha);color:var(--texto)}
+.paginacao a:hover b{color:var(--red)}
+.paginacao .mono{color:var(--texto-2)}
+.paginacao b{font:800 1.4rem/1.05 var(--display);font-stretch:80%;text-transform:uppercase}
+.paginacao .prox{text-align:right;grid-column:2}
 
-/* 7. STICKERS -------------------------------------------- */
-/* posição inicial de cada sticker fica no HTML (style="--x:..;--y:..") */
+/* 7. RODAPÉ ---------------------------------------------- */
+.rodape{background:var(--tinta);border-top:3px solid var(--linha);margin-top:120px;padding:48px 0 28px;color:var(--cinza)}
+main:has(> .contato-sec:last-child) + .rodape{margin-top:0}
+.rodape-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:32px}
+.rodape .marca{color:var(--papel);margin-bottom:12px}
+.rodape p{font-size:.9rem;max-width:36ch}
+.rodape h2{font:500 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--papel);margin-bottom:12px}
+.rodape ul{list-style:none;font-size:.92rem}
+.rodape li{padding:3px 0}
+.rodape a{text-decoration:none}
+.rodape a:hover{color:var(--hot);text-decoration:underline}
+.rodape-fim{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:40px;padding-top:18px;border-top:1.5px solid #2c1a1b}
+.rodape-fim button{background:none;border:1.5px solid var(--cinza);color:var(--cinza);font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;cursor:pointer}
+.rodape-fim button:hover{border-color:var(--hot);color:var(--hot)}
+
+/* 8. STICKERS -------------------------------------------- */
+/* posição inicial de cada sticker fica no HTML (style="--x:..;--y:..").
+   Ela é relativa à seção onde o sticker está. */
 .sticker{
   position:absolute;z-index:10;
   left:var(--x);top:var(--y);width:var(--w,120px);
   transform:translate(var(--dx,0px),var(--dy,0px)) rotate(var(--r,0deg));
   cursor:grab;touch-action:none;user-select:none;-webkit-user-drag:none;
-  filter:drop-shadow(3px 3px 0 rgba(0,0,0,.45));
+  filter:drop-shadow(4px 4px 0 rgba(0,0,0,.55));
 }
-.sticker:hover{filter:drop-shadow(3px 3px 0 rgba(0,0,0,.45)) brightness(1.1)}
-.sticker.arrastando{cursor:grabbing;z-index:30}
+.sticker:hover{filter:drop-shadow(4px 4px 0 rgba(0,0,0,.55)) brightness(1.12)}
+.sticker.arrastando{cursor:grabbing;z-index:45}
 
-/* 8. CELULAR E ACESSIBILIDADE ---------------------------- */
-/* Regras do celular:
-   - tudo que se toca tem pelo menos 44px de altura (tamanho de um dedo)
-   - campo de busca com 16px, senão o iPhone dá zoom sozinho ao tocar
-   - nada de caixa com rolagem dentro da página que já rola
-   - stickers ficam parados, pra não "roubar" o dedo de quem está rolando */
-@media (max-width:760px){
-  body{padding:12px max(8px,env(safe-area-inset-right)) 40px max(8px,env(safe-area-inset-left))}
-  .page{padding:0 12px 20px}
-  .updated{margin:0 -12px}
-  .titlebar{padding:10px 12px;justify-content:center;text-align:center}
-  .titlebar [data-reset-stickers]{display:none}
-
-  .menu{padding:10px;gap:10px}
-  .menu .links{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;font-size:1.05rem}
-  .menu .links a,.menu .links a + a{display:flex;align-items:center;justify-content:center;min-height:44px;border:2px solid var(--paper-ink)}
-  .busca{max-width:none;flex-basis:100%}
-  .busca input{font-size:16px;min-height:44px}
-  .busca::after{width:44px}
-  .busca-res a{padding:12px}
-
-  .grid{gap:40px;margin-bottom:36px}
-  .grid.two,.grid.avatar-row{grid-template-columns:1fr}
-  .grid.avatar-row .avatar{max-width:220px;margin:0 auto;width:100%;padding:0}
-  .avatar-tag{font-size:.85rem;white-space:nowrap;text-align:center}
-  .box{padding:16px 14px 14px;box-shadow:4px 4px 0 var(--line)}
-  .box:has(> .label:first-child){padding-top:28px}
-
-  .hero{min-height:140px}
-  .scroll{max-height:none;overflow:visible;padding-right:0}
-  .scroll-hint[aria-hidden]{display:none}
-  .ticker{margin:44px 0 40px;box-shadow:4px 4px 0 var(--line)}
-
-  .cards{grid-template-columns:1fr;gap:32px}
-  .acts{gap:0 18px}
-  .logo,.chip,.acts a,.back,.scroll-hint a,.scroll a,.meta a{display:inline-flex;align-items:center;min-height:44px}
-  .back{padding:0 12px}
-  .list li{grid-template-columns:1fr;gap:2px}
-  .list h2 a,.list h3 a{display:block;padding:8px 0}
-  .meta{grid-template-columns:80px 1fr}
-
-  .box .contatos{display:grid;grid-template-columns:1fr 1fr}
-  .box .contatos a{display:flex;align-items:center;justify-content:center;min-height:48px}
-  .box .contatos a:last-child:nth-child(odd){grid-column:1/-1}
-
+/* 9. TELAS MENORES E ACESSIBILIDADE ---------------------- */
+/* menu vira botão abaixo de 1080px */
+@media (max-width:1080px){
+  .menu-btn{
+    display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;
+    font:500 .8rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+    background:var(--tinta);color:var(--papel);border:2px solid var(--linha);cursor:pointer;
+  }
+  .menu-btn i{display:grid;gap:4px;width:16px}
+  .menu-btn i::before,.menu-btn i::after{content:"";height:2px;background:currentColor}
+  .menu-btn[aria-expanded="true"]{background:var(--red);color:#fff}
+  .nav{
+    position:absolute;left:0;right:0;top:100%;height:auto;
+    display:none;flex-direction:column;align-items:stretch;gap:16px;
+    background:var(--papel);border-bottom:3px solid var(--linha);
+    padding:16px var(--respiro) 22px;box-shadow:0 12px 0 rgba(0,0,0,.35);
+  }
+  .nav.aberto{display:flex}
+  .nav ul{grid-template-columns:1fr 1fr;gap:10px;height:auto}
+  .nav li a,.nav li:last-child a{flex-direction:row;justify-content:space-between;min-height:56px;padding:0 16px;border:2px solid var(--linha);font-size:1rem}
+  .busca{width:100%}
+  .busca input{height:48px;font-size:16px} /* 16px: senão o iPhone dá zoom sozinho */
+  .busca kbd{display:none}
+  .busca-res a{padding:13px 12px}
+}
+@media (max-width:900px){
+  :root{--respiro:18px;--sombra:6px 6px 0 var(--linha)}
+  .hero-grid,.projetos,.duas,.contato-grid,.artigo{grid-template-columns:minmax(0,1fr)}
+  .projetos{grid-template-columns:minmax(0,1fr)}
+  .projetos .destaque{display:flex}
+  .destaque .thumb{border-right:0;border-bottom:3px solid var(--linha);aspect-ratio:16/9}
+  .hero-lado{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:28px}
+  .frentes{grid-template-columns:minmax(0,1fr)}
+  .ficha{position:static}
+  .texto{padding:28px 24px 32px}
+  .gato-grande{max-width:320px;margin:8px auto 0}
+  .rodape-grid{grid-template-columns:1fr 1fr}
+  .rodape-grid > :first-child{grid-column:1/-1}
+  .secao{padding-top:88px}
+}
+@media (max-width:600px){
+  .topo-in{height:60px;gap:12px}
+  .marca img{width:34px}
+  .marca b{font-size:1.1rem}
+  .hero-sec{padding-bottom:56px}
+  .hero-meta span:nth-child(n+3){display:none}
+  .name{font-size:12.4vw}
+  .name .w{margin-bottom:8px}
+  .name .w::after{font-size:.62rem}
+  .hero-info{font-size:.66rem}
+  .faixa-preta .mono{display:none}
+  .intro{padding:20px}
+  .hero-lado{grid-template-columns:minmax(0,1fr)}
+  .avatar-wrap{max-width:300px;margin:14px auto 0;width:calc(100% - 28px)}
+  .avatar-wrap .grito{left:-14px}
+  .secao-cab{grid-template-columns:auto 1fr}
+  .secao-cab .link-seta{grid-column:1/-1;grid-row:3;justify-self:start;margin-top:10px}
+  .secao-desc{grid-column:1/-1}
+  .notas a{grid-template-columns:minmax(0,1fr) auto;padding:16px}
+  .notas .tipo{grid-row:auto;justify-self:start;margin:0 0 4px}
+  .notas strong,.notas small{grid-column:1}
+  .notas .seta{grid-row:1/span 3;grid-column:2}
+  .contatos a{grid-template-columns:minmax(0,1fr) auto}
+  .contatos span{grid-column:1;grid-row:2}
+  .contatos i{grid-row:1/span 2;grid-column:2}
+  .paginacao{grid-template-columns:minmax(0,1fr)}
+  .paginacao .prox{grid-column:1}
+  .texto{padding:24px 18px 28px}
+  .prose{font-size:1rem}
+  .prose > p:first-child{font-size:1.1rem}
+  .prose code{white-space:normal;word-break:break-word}
+  .rodape-grid{grid-template-columns:minmax(0,1fr)}
+  /* no celular os stickers ficam parados e só um aparece, pra não cobrir texto
+     nem "roubar" o dedo de quem está rolando */
   .sticker{width:calc(var(--w,120px) * .6);pointer-events:none}
-  .sticker:not([data-id="gato"]){display:none} /* só o gato fica, pra não cobrir texto */
-  .sticker[data-id="gato"]{top:calc(100% - 46px);left:calc(100% - 60px)} /* na borda de baixo, longe dos botões */
-  footer{width:auto;margin:20px 8px 0}
+  .sticker:not(.fica-no-celular){display:none}
+  .sticker.fica-no-celular{left:calc(100% - 78px);top:78px}
 }
 @media (prefers-reduced-motion:reduce){
-  .ticker span{animation:none;padding-left:12px}
-  .timeline li:last-child::before{animation:none}
-  .contatos a,.card .thumb img{transition:none}
+  html{scroll-behavior:auto}
+  .ticker-in{animation:none}
+  .agora h2::before,.tempo li:last-child::before{animation:none}
+  .btn,.frente,.projeto,.thumb img,.paginacao a,.marca img{transition:none}
 }

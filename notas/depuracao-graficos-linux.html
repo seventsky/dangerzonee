@@ -3,50 +3,77 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Depuração de gráficos no Linux — Karina Rodrigues</title>
+<title>Depuração de gráficos no Linux · Karina Rodrigues</title>
 <meta name="description" content="tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.">
-<meta property="og:title" content="Depuração de gráficos no Linux — Karina Rodrigues">
+<meta property="og:title" content="Depuração de gráficos no Linux · Karina Rodrigues">
 <meta property="og:description" content="tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.">
-<meta name="theme-color" content="#b81f25">
+<meta name="theme-color" content="#c8161d">
 <link rel="preload" href="../fonts/cyber-brush.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="../img/favicon.png" type="image/png">
+<link rel="icon" href="../img/favicon.png" type="image/png" sizes="64x64">
+<link rel="icon" href="../img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css?v=5">
 </head>
 <body data-root="../">
 <a class="pular" href="#conteudo">pular pro conteúdo</a>
-<div class="page">
-  <header>
-    <p class="updated">atualizado em 26 out 2026</p>
-    <div class="titlebar">
-      <a class="logo" href="../index.html">KARINA RODRIGUES</a>
-      <a class="chip" href="../index.html#contato">contato</a>
-    </div>
-    <nav class="menu" aria-label="Menu principal">
-      <span class="links">
-      <a href="../index.html">início</a>
-      <a href="../sobre.html">sobre</a>
-      <a href="../projects.html">projetos</a>
-      <a href="../lab.html" aria-current="page">laboratório</a>
-      </span>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="../index.html" aria-label="Karina Rodrigues, página inicial">
+      <img src="../img/logo.webp" alt="" width="160" height="146">
+      <b>Karina <span>Rodrigues</span></b>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>menu</button>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <ul>
+        <li><a href="../index.html"><small>01</small><span>início</span></a></li>
+        <li><a href="../sobre.html"><small>02</small><span>sobre</span></a></li>
+        <li><a href="../projects.html"><small>03</small><span>projetos</span></a></li>
+        <li><a href="../lab.html" aria-current="page"><small>04</small><span>laboratório</span></a></li>
+      </ul>
       <form class="busca" role="search" autocomplete="off">
         <label class="sr-only" for="busca">buscar no site</label>
         <input id="busca" type="search" placeholder="buscar no site...">
+        <kbd aria-hidden="true">/</kbd>
         <ul class="busca-res" aria-live="polite"></ul>
       </form>
     </nav>
-  </header>
-
+  </div>
+</header>
 <main id="conteudo">
-  <a class="back" href="../lab.html">← voltar pro laboratório</a>
-  <h1 class="page-title">Depuração de gráficos no Linux</h1>
-  <p class="lead">tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.</p>
+  <section class="pag-topo vermelho">
+    <div class="wrap">
+      <nav class="trilha mono" aria-label="Você está aqui"><ol><li><a href="../index.html">início</a></li><li><a href="../lab.html">laboratório</a></li><li aria-current="page">Depuração de gráficos no Linux</li></ol></nav>
+      <h1 class="pag-titulo"><span>Depuração de gráficos no Linux</span><small aria-hidden="true">nota</small></h1>
+      <p class="pag-lead">tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.</p>
+    </div>
+  </section>
 
-  <article class="box paper">
-    <div class="prose">
+  <div class="wrap artigo">
+    <aside class="ficha papel" aria-label="Sobre esta nota">
+      <h2>sobre esta nota</h2>
+      <dl>
+        <dt>tipo</dt><dd>nota</dd>
+        <dt>leitura</dt><dd>4 min</dd>
+        <dt>assuntos</dt><dd><ul class="tags"><li>linux</li><li>ubuntu</li><li>nvidia</li><li>kernel</li><li>journalctl</li></ul></dd>
+      </dl>
+      <div class="ficha-sub">
+        <h2>outras notas</h2>
+        <ul>
+          <li><a href="wazuh-siem.html">Wazuh SIEM</a></li>
+          <li><a href="anotacoes-seguranca-web.html">Anotações de segurança web</a></li>
+          <li><a href="git-e-github.html">Git e GitHub</a></li>
+          <li><a href="discord-rich-presence.html">Discord Rich Presence</a></li>
+        </ul>
+      </div>
+      <div class="ficha-sub mono"><a href="../lab.html">← voltar pro laboratório</a></div>
+    </aside>
+
+    <article class="texto papel">
+      <div class="prose">
     <p>uso ubuntu 24.04. por muito tempo eu fui só usuária, ligava, usava e desligava. até o computador começar a dar problema.</p>
 
     <p>aí não teve jeito. fui parar no terminal, nos arquivos, nos serviços, nos pacotes, nos drivers, no processo de inicialização. systemd, gdm, gnome, wayland, xorg, grub, initramfs, dkms, kernel, módulos... aprendi quase tudo isso porque precisei.</p>
@@ -80,16 +107,52 @@
     <p>dpkg, initramfs e grub me deram uma dor de cabeça que eu não esperava. usei <code>dpkg --configure -a</code> pra terminar a configuração dos pacotes. depois ainda tive que mexer no initramfs e no grub, e foi nesse processo que eu entendi o caminho que o computador faz até ligar. firmware, grub, kernel, initramfs, módulos, serviços, gdm e, finalmente, a interface gráfica.</p>
 
     <p>antes era "liga o computador e aparece o ubuntu". agora eu sei o que acontece entre uma coisa e outra. numa faculdade eu talvez aprendesse isso de um jeito mais fácil. mas será que seria do mesmo jeito?</p>
-    </div>
-  </article>
-</main>
-</div>
+      </div>
+    </article>
+  </div>
 
-<footer>
-  © 2026 Karina Rodrigues · sete chaves ·
-  <a href="https://github.com/seventsky" target="_blank" rel="noopener">github</a> ·
-  <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">linkedin</a>
+  <nav class="wrap paginacao" aria-label="Outras notas"><a class="papel prox" href="wazuh-siem.html"><span class="mono">próxima nota →</span><b>Wazuh SIEM</b></a></nav>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-grid">
+      <div>
+        <a class="marca" href="../index.html" aria-label="Karina Rodrigues, página inicial">
+          <img src="../img/logo.webp" alt="" width="160" height="146">
+          <b>Karina <span>Rodrigues</span></b>
+        </a>
+        <p>segurança da informação, desenvolvimento web e escrita. rio de janeiro.</p>
+      </div>
+      <nav aria-label="Páginas">
+        <h2>páginas</h2>
+        <ul>
+          <li><a href="../index.html">início</a></li>
+          <li><a href="../sobre.html">sobre</a></li>
+          <li><a href="../projects.html">projetos</a></li>
+          <li><a href="../lab.html">laboratório</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>me acha aqui</h2>
+        <ul>
+          <li><a href="https://github.com/seventsky" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://tryhackme.com/p/s3te" target="_blank" rel="noopener">TryHackMe ↗</a></li>
+          <li><a href="https://x.com/setereveses" target="_blank" rel="noopener">X ↗</a></li>
+          <li><a href="https://discord.com/users/874118558521634826" target="_blank" rel="noopener">Discord ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim mono">
+      <span>© 2026 Karina Rodrigues · sete chaves · atualizado em 26 out 2026</span>
+      <span class="botoes">
+        <button type="button" data-reset-stickers>arrumar stickers</button>
+        <a class="link-seta" href="#conteudo">voltar ao topo ↑</a>
+      </span>
+    </div>
+  </div>
 </footer>
-<script src="../script.js?v=4"></script>
+<script src="../script.js?v=5"></script>
 </body>
 </html>

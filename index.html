@@ -3,157 +3,293 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Karina Rodrigues</title>
+<title>Karina Rodrigues · segurança, dev e poesia</title>
 <meta name="description" content="Portfólio da Karina Rodrigues: segurança da informação, desenvolvimento web e investigação digital.">
-<meta property="og:title" content="Karina Rodrigues">
+<meta property="og:title" content="Karina Rodrigues · segurança, dev e poesia">
 <meta property="og:description" content="Portfólio da Karina Rodrigues: segurança da informação, desenvolvimento web e investigação digital.">
-<meta name="theme-color" content="#b81f25">
+<meta name="theme-color" content="#c8161d">
 <link rel="preload" href="fonts/cyber-brush.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="icon" href="img/favicon.png" type="image/png" sizes="64x64">
+<link rel="icon" href="img/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@1&family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body data-root="">
 <a class="pular" href="#conteudo">pular pro conteúdo</a>
-<div class="page">
-  <header>
-    <p class="updated">atualizado em 26 out 2026</p>
-    <div class="titlebar">
-      <a class="logo" href="index.html">KARINA RODRIGUES</a>
-      <button class="chip" type="button" data-reset-stickers>arrumar stickers</button>
-    </div>
-    <nav class="menu" aria-label="Menu principal">
-      <span class="links">
-      <a href="index.html" aria-current="page">início</a>
-      <a href="sobre.html">sobre</a>
-      <a href="projects.html">projetos</a>
-      <a href="lab.html">laboratório</a>
-      </span>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="index.html" aria-label="Karina Rodrigues, página inicial">
+      <img src="img/logo.webp" alt="" width="160" height="146">
+      <b>Karina <span>Rodrigues</span></b>
+    </a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav"><i aria-hidden="true"></i>menu</button>
+    <nav class="nav" id="nav" aria-label="Menu principal">
+      <ul>
+        <li><a href="index.html" aria-current="page"><small>01</small><span>início</span></a></li>
+        <li><a href="sobre.html"><small>02</small><span>sobre</span></a></li>
+        <li><a href="projects.html"><small>03</small><span>projetos</span></a></li>
+        <li><a href="lab.html"><small>04</small><span>laboratório</span></a></li>
+      </ul>
       <form class="busca" role="search" autocomplete="off">
         <label class="sr-only" for="busca">buscar no site</label>
         <input id="busca" type="search" placeholder="buscar no site...">
+        <kbd aria-hidden="true">/</kbd>
         <ul class="busca-res" aria-live="polite"></ul>
       </form>
     </nav>
-  </header>
+  </div>
+</header>
 
 <main id="conteudo">
-  <section class="grid avatar-row">
-    <div class="box avatar">
-      <img src="img/avatar.webp" alt="Desenho da Karina: gato preto de olhos em espiral e coleira, sobre fundo vermelho" width="480" height="576">
-      <span class="avatar-tag">&gt;&gt; RJ · SEC / DEV / POESIA</span>
-    </div>
-
-    <div class="box paper">
-      <div class="hero">
-        <h1 class="name" aria-label="Karina Rodrigues">
-          <span class="w" aria-hidden="true"><span class="l">K</span><span class="l">a</span><span class="l">r</span><span class="l">i</span><span class="l">n</span><span class="l">a</span></span>
-          <span class="w" aria-hidden="true"><span class="l">R</span><span class="l">o</span><span class="l">d</span><span class="l">r</span><span class="l">i</span><span class="l">g</span><span class="l">u</span><span class="l">e</span><span class="l">s</span></span>
-        </h1>
-        <span class="state" aria-hidden="true">estado: repouso</span>
-        <span class="hint" aria-hidden="true"><span class="so-mouse">passa o cursor aqui</span><span class="so-toque">arrasta o dedo pro lado aqui</span></span>
+  <!-- HERO: o nome é interativo (o script troca fonte, espaçamento e sublinhado conforme o cursor) -->
+  <section class="hero-sec vermelho">
+    <div class="wrap">
+      <div class="hero-meta mono">
+        <span>portfólio · 2026</span>
+        <span>rio de janeiro, br</span>
+        <span>sec / dev / poesia</span>
+        <span>N° 777</span>
       </div>
-      <div class="scroll" tabindex="0" role="region" aria-label="Apresentação">
-        <p><b>eu sou só uma escritora. e se código também pudesse virar poesia?</b></p>
-        <p>aprendi tecnologia sozinha, sem faculdade na área, praticamente do zero.</p>
-        <p>comecei com html, css e javascript, depois veio python e um pouco de java. só que fazer site não bastava, eu queria saber o que rolava por trás.</p>
-        <p>aí a segurança entrou de vez. hoje eu estudo linux, redes, segurança web, ctf, red team e monitoramento.</p>
-        <p><a href="sobre.html">ler a história completa →</a></p>
+
+      <div class="hero-grid">
+        <div>
+          <div class="hero">
+            <h1 class="name" aria-label="Karina Rodrigues">
+              <span class="w" aria-hidden="true"><span class="l">K</span><span class="l">a</span><span class="l">r</span><span class="l">i</span><span class="l">n</span><span class="l">a</span></span>
+              <span class="w" aria-hidden="true"><span class="l">R</span><span class="l">o</span><span class="l">d</span><span class="l">r</span><span class="l">i</span><span class="l">g</span><span class="l">u</span><span class="l">e</span><span class="l">s</span></span>
+            </h1>
+            <div class="hero-info mono" aria-hidden="true">
+              <span class="hint"><span class="so-mouse">↖ passa o cursor no nome</span><span class="so-toque">↖ arrasta o dedo no nome</span></span>
+              <span class="state">estado: repouso</span>
+            </div>
+          </div>
+
+          <div class="faixa-preta">
+            <p>segurança <i>/</i> desenvolvimento web <i>/</i> escrita</p>
+            <span class="mono" aria-hidden="true">03</span>
+          </div>
+
+          <div class="intro papel">
+            <p class="lede">eu sou só uma escritora. e se código também pudesse virar poesia?</p>
+            <p>aprendi tecnologia sozinha, sem faculdade na área, praticamente do zero. comecei com html, css e javascript, mas fazer site não bastava: eu queria saber o que rolava por trás. hoje eu estudo linux, redes, segurança web, CTF, red team e monitoramento.</p>
+            <div class="botoes">
+              <a class="btn btn-red" href="projects.html">ver projetos →</a>
+              <a class="btn btn-claro" href="sobre.html">minha história</a>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-lado" aria-label="Resumo">
+          <figure class="avatar-wrap">
+            <div class="janela selecao">
+              <div class="janela-barra"><span>eu.png</span><span class="bt" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+              <img src="img/avatar.webp" alt="Desenho da Karina: gato preto de olhos em espiral e coleira, sobre fundo vermelho" width="480" height="576">
+              <figcaption>autorretrato · versão gato</figcaption>
+            </div>
+            <span class="grito" aria-hidden="true">oi, sou eu !!</span>
+          </figure>
+
+          <div class="agora papel">
+            <h2>estudando agora</h2>
+            <ul>
+              <li>segurança web <span>web</span></li>
+              <li>Wazuh / SIEM <span>blue team</span></li>
+              <li>TryHackMe e Hack The Box <span>CTF</span></li>
+              <li>Python e Flask <span>dev</span></li>
+            </ul>
+          </div>
+        </aside>
       </div>
-      <span class="scroll-hint" aria-hidden="true">(isso rola ↓)</span>
     </div>
   </section>
 
-  <p class="ticker"><span>estudando agora ✦ segurança web ✦ linux ✦ wazuh / SIEM ✦ CTFs no TryHackMe e Hack The Box ✦ python e flask ✦ .777 ✦</span></p>
+  <div class="ticker" aria-label="Estudando agora: segurança web, linux, wazuh / SIEM, CTFs, python e flask, redes">
+    <div class="ticker-in" aria-hidden="true"><span>estudando agora</span><i>■</i><span>segurança web</span><i>■</i><span>linux</span><i>■</i><span>wazuh / SIEM</span><i>■</i><span>CTFs no TryHackMe e Hack The Box</span><i>■</i><span>python e flask</span><i>■</i><span>redes</span><i>■</i><span>.777</span><i>■</i><span>estudando agora</span><i>■</i><span>segurança web</span><i>■</i><span>linux</span><i>■</i><span>wazuh / SIEM</span><i>■</i><span>CTFs no TryHackMe e Hack The Box</span><i>■</i><span>python e flask</span><i>■</i><span>redes</span><i>■</i><span>.777</span><i>■</i></div>
+  </div>
 
-  <section class="grid two">
-    <div class="box">
-      <h2 class="label">&gt;&gt; interesses &lt;&lt;</h2>
-      <ul class="tags">
-        <li>segurança web</li><li>CTFs</li><li>red team</li><li>SIEM / monitoramento</li>
-        <li>Linux</li><li>redes</li><li>investigação digital</li><li>poesia</li><li>escrita</li>
-      </ul>
+  <!-- 01 · O QUE EU FAÇO -->
+  <section class="secao wrap" aria-labelledby="s-frentes">
+    <div class="secao-cab">
+      <span class="secao-num">01</span>
+      <h2 class="secao-titulo"><span id="s-frentes">o que eu faço</span></h2>
+      <p class="secao-desc">três frentes que vivem se misturando. investigar é o que junta tudo.</p>
     </div>
-    <div class="box">
-      <h2 class="label">[ stack ]</h2>
-      <ul class="tags">
-        <li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>Flask</li><li>Java</li>
-        <li>Git / GitHub</li><li>Ubuntu</li><li>systemd</li><li>Wazuh</li><li>Rust (de leve)</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="box paper section">
-    <h2 class="label">&gt;&gt; projetos !!</h2>
-    <div class="cards">
-      <article class="card">
-        <div class="thumb"><img src="img/projetos/jane-doe-os-thumb.webp" alt="Tela do Jane Doe / OS: janelas de messenger, caseboard e route scanner abertas na área de trabalho" width="720" height="450" loading="lazy"></div>
-        <h3>Jane Doe / OS <span class="fav">★ favorito</span></h3>
-        <p>um sistema operacional fictício pra investigar o sumiço da carolina stozzo.<br>HTML, CSS, JavaScript</p>
-        <div class="acts"><a href="casos/jane-doe-os.html">ler caso</a> <a href="https://seventsky.github.io/" target="_blank" rel="noopener">ver online ↗</a> <a href="https://github.com/seventsky/seventsky.github.io" target="_blank" rel="noopener">código ↗</a></div>
+    <div class="frentes">
+      <article class="frente papel">
+        <div class="frente-topo"><span class="frente-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="mono">/01</span></div>
+        <h3>Segurança</h3>
+        <p>segurança web, CTFs e red team, e o lado defensivo também: log, evento e monitoramento com SIEM.</p>
+        <ul class="tags"><li>segurança web</li><li>CTFs</li><li>red team</li><li>Wazuh / SIEM</li><li>redes</li><li>Linux</li></ul>
       </article>
-      <article class="card">
-        <div class="thumb"><img src="img/projetos/echoes-of-reality-thumb.webp" alt="Tela do Echoes of Reality: a cena Escritório Abandonado com inventário, status e logs na lateral" width="720" height="450" loading="lazy"></div>
-        <h3>Echoes of Reality</h3>
-        <p>ficção interativa no navegador. você explora lugares, junta itens e desbloqueia arquivos entre realidades.<br>HTML, CSS, JavaScript</p>
-        <div class="acts"><a href="casos/echoes-of-reality.html">ler caso</a> <a href="https://seventsky.github.io/ECHOS.TXT/" target="_blank" rel="noopener">ver online ↗</a> <a href="https://github.com/seventsky/ECHOS.TXT" target="_blank" rel="noopener">código ↗</a></div>
+      <article class="frente papel">
+        <div class="frente-topo"><span class="frente-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></span><span class="mono">/02</span></div>
+        <h3>Desenvolvimento web</h3>
+        <p>interfaces que parecem um lugar, não só um documento. do html ao back-end em python.</p>
+        <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Python</li><li>Flask</li><li>Java</li><li>Git / GitHub</li></ul>
       </article>
-      <article class="card">
-        <div class="thumb sem-print"><img src="img/stickers/olho.webp" alt="" width="360" height="327" loading="lazy"></div>
-        <h3>Vigilant</h3>
-        <p>aplicação web voltada pra segurança.<br>Python, Flask</p>
-        <div class="acts"><a href="casos/vigilant.html">ler caso</a> <a href="https://github.com/seventsky/vigilant" target="_blank" rel="noopener">código ↗</a></div>
+      <article class="frente papel">
+        <div class="frente-topo"><span class="frente-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13 7 4 4"/><path d="M14 20h6"/></svg></span><span class="mono">/03</span></div>
+        <h3>Escrita e investigação</h3>
+        <p>poesia desde 2019. a mesma vontade de entender o mundo que hoje vira investigação digital.</p>
+        <ul class="tags"><li>poesia</li><li>escrita</li><li>investigação digital</li><li>Ubuntu</li><li>systemd</li><li>Rust (de leve)</li></ul>
       </article>
     </div>
+    <img class="sticker" data-id="olho" src="img/stickers/olho.webp" alt="" style="--x:calc(100% - 150px);--y:40px;--w:140px;--r:8deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
   </section>
 
-  <section class="grid two">
-    <div class="box">
-      <h2 class="label">&gt;&gt; laboratório</h2>
-      <ul class="list">
-        <li><span class="kind">nota</span><h3><a href="notas/depuracao-graficos-linux.html">Depuração de gráficos no Linux</a></h3></li>
-        <li><span class="kind">estudo</span><h3><a href="notas/wazuh-siem.html">Wazuh SIEM</a></h3></li>
-        <li><span class="kind">nota</span><h3><a href="notas/anotacoes-seguranca-web.html">Segurança web</a></h3></li>
-      </ul>
-      <span class="scroll-hint"><a href="lab.html">ver tudo →</a></span>
+  <!-- 02 · PROJETOS -->
+  <section class="secao wrap" aria-labelledby="s-projetos">
+    <div class="secao-cab">
+      <span class="secao-num">02</span>
+      <h2 class="secao-titulo"><span id="s-projetos">projetos</span></h2>
+      <a class="link-seta" href="projects.html">todos os projetos →</a>
+      <p class="secao-desc">o que eu construí (e ainda tô construindo). cada projeto tem uma página contando como foi.</p>
     </div>
-    <div class="box">
-      <h2 class="label">&gt;&gt; linha do tempo</h2>
-      <ol class="timeline">
-        <li><b>2019</b>poesia</li>
-        <li><b>2024</b>primeiros passos em código</li>
-        <li><b>2025</b>desenvolvimento web</li>
-        <li><b>2026</b>cibersegurança</li>
-        <li><b>agora</b>_</li>
-      </ol>
+    <div class="projetos">
+      <article class="projeto janela destaque">
+        <div class="janela-barra"><span>jane-doe-os.html</span><span class="bt" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <a class="thumb" href="casos/jane-doe-os.html" tabindex="-1" aria-hidden="true"><img src="img/projetos/jane-doe-os-thumb.webp" alt="" width="720" height="450" loading="lazy"></a>
+        <div class="projeto-corpo">
+          <div class="projeto-kicker mono"><span>01 · investigação · ARG</span><span class="selo">★ favorito</span></div>
+          <h3><a href="casos/jane-doe-os.html">Jane Doe / OS</a></h3>
+          <p>um sistema operacional fictício pra investigar o sumiço da carolina stozzo.</p>
+          <ul class="tags" aria-label="tecnologias"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <div class="acoes"><a class="btn btn-red" href="casos/jane-doe-os.html">ler o caso →</a> <a class="link-seta" href="https://seventsky.github.io/" target="_blank" rel="noopener">ver online ↗</a> <a class="link-seta" href="https://github.com/seventsky/seventsky.github.io" target="_blank" rel="noopener">código ↗</a></div>
+        </div>
+      </article>
+      <article class="projeto janela">
+        <div class="janela-barra"><span>echoes-of-reality.html</span><span class="bt" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <a class="thumb" href="casos/echoes-of-reality.html" tabindex="-1" aria-hidden="true"><img src="img/projetos/echoes-of-reality-thumb.webp" alt="" width="720" height="450" loading="lazy"></a>
+        <div class="projeto-corpo">
+          <div class="projeto-kicker mono"><span>02 · ficção interativa</span></div>
+          <h3><a href="casos/echoes-of-reality.html">Echoes of Reality</a></h3>
+          <p>ficção interativa no navegador. você explora lugares, junta itens e desbloqueia arquivos entre realidades.</p>
+          <ul class="tags" aria-label="tecnologias"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          <div class="acoes"><a class="btn btn-red" href="casos/echoes-of-reality.html">ler o caso →</a> <a class="link-seta" href="https://seventsky.github.io/ECHOS.TXT/" target="_blank" rel="noopener">ver online ↗</a> <a class="link-seta" href="https://github.com/seventsky/ECHOS.TXT" target="_blank" rel="noopener">código ↗</a></div>
+        </div>
+      </article>
+      <article class="projeto janela">
+        <div class="janela-barra"><span>vigilant.html</span><span class="bt" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <a class="thumb sem-print" href="casos/vigilant.html" tabindex="-1" aria-hidden="true"><img src="img/stickers/olho.webp" alt="" width="360" height="327" loading="lazy"></a>
+        <div class="projeto-corpo">
+          <div class="projeto-kicker mono"><span>03 · segurança</span></div>
+          <h3><a href="casos/vigilant.html">Vigilant</a></h3>
+          <p>aplicação web voltada pra segurança.</p>
+          <ul class="tags" aria-label="tecnologias"><li>Python</li><li>Flask</li></ul>
+          <div class="acoes"><a class="btn btn-red" href="casos/vigilant.html">ler o caso →</a> <a class="link-seta" href="https://github.com/seventsky/vigilant" target="_blank" rel="noopener">código ↗</a></div>
+        </div>
+      </article>
     </div>
+    <img class="sticker" data-id="borboleta" src="img/stickers/borboleta.webp" alt="" style="--x:calc(100% - 330px);--y:70px;--w:110px;--r:-14deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
   </section>
 
-  <section class="box paper" id="contato">
-    <h2 class="label">&gt;&gt; me acha aqui</h2>
-    <div class="contatos">
-      <a href="https://github.com/seventsky" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://tryhackme.com/p/s3te" target="_blank" rel="noopener">TryHackMe</a>
-      <a href="https://x.com/setereveses" target="_blank" rel="noopener">X</a>
-      <a href="https://discord.com/users/874118558521634826" target="_blank" rel="noopener">Discord</a>
+  <!-- 03 · LABORATÓRIO + LINHA DO TEMPO -->
+  <section class="secao wrap" aria-labelledby="s-lab">
+    <div class="secao-cab">
+      <span class="secao-num">03</span>
+      <h2 class="secao-titulo"><span id="s-lab">laboratório</span></h2>
+      <a class="link-seta" href="lab.html">ver o laboratório →</a>
+      <p class="secao-desc">notas de estudo e experimentos. nem tudo é projeto pronto, e a ideia é essa mesmo.</p>
+    </div>
+    <div class="duas">
+      <div>
+        <span class="mono mono-tit">notas recentes</span>
+        <ul class="notas papel">
+        <li><a href="notas/depuracao-graficos-linux.html"><span class="tipo">nota</span><strong>Depuração de gráficos no Linux</strong><small>tela preta, duas placas de vídeo, kernel, dkms e muito journalctl.</small><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="notas/wazuh-siem.html"><span class="tipo">estudo</span><strong>Wazuh SIEM</strong><small>monitoramento, log, evento e o lado defensivo da segurança.</small><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="notas/anotacoes-seguranca-web.html"><span class="tipo">nota</span><strong>Anotações de segurança web</strong><small>requisição, sessão, cookie e por que entender o normal vem antes da falha.</small><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="notas/git-e-github.html"><span class="tipo">nota</span><strong>Git e GitHub</strong><small>repositório, readme e github pages.</small><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="notas/discord-rich-presence.html"><span class="tipo">código</span><strong>Discord Rich Presence</strong><small>rust, cargo e um serviço do systemd rodando em segundo plano.</small><span class="seta" aria-hidden="true">→</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="mono mono-tit">linha do tempo</span>
+        <div class="tempo papel">
+          <ol>
+            <li><b>2019</b><span>poesia</span></li>
+            <li><b>2024</b><span>primeiros passos em código</span></li>
+            <li><b>2025</b><span>desenvolvimento web</span></li>
+            <li><b>2026</b><span>cibersegurança</span></li>
+            <li><b>agora</b><span>estudando, quebrando e consertando</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <img class="sticker fica-no-celular" data-id="gato" src="img/stickers/gato.webp" alt="" style="--x:calc(100% - 90px);--y:calc(100% - 60px);--w:110px;--r:-10deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
+  </section>
+
+  <!-- 04 · CONTATO -->
+  <section class="contato-sec vermelho" id="contato" aria-labelledby="s-contato">
+    <div class="wrap contato-grid">
+      <div>
+        <span class="secao-num">04</span>
+        <h2 class="contato-titulo" id="s-contato">bora conversar?</h2>
+        <p class="contato-texto papel">pra falar de segurança, de projeto ou de poesia. me chama em qualquer um desses aqui embaixo.</p>
+        <div class="janela">
+          <div class="janela-barra"><span>contato.txt</span><span class="bt" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+          <ul class="contatos">
+          <li><a href="https://github.com/seventsky" target="_blank" rel="noopener"><b>GitHub</b><span>seventsky</span><i aria-hidden="true">↗</i></a></li>
+          <li><a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener"><b>LinkedIn</b><span>karina-rodrigues</span><i aria-hidden="true">↗</i></a></li>
+          <li><a href="https://tryhackme.com/p/s3te" target="_blank" rel="noopener"><b>TryHackMe</b><span>s3te</span><i aria-hidden="true">↗</i></a></li>
+          <li><a href="https://x.com/setereveses" target="_blank" rel="noopener"><b>X</b><span>@setereveses</span><i aria-hidden="true">↗</i></a></li>
+          <li><a href="https://discord.com/users/874118558521634826" target="_blank" rel="noopener"><b>Discord</b><span>perfil</span><i aria-hidden="true">↗</i></a></li>
+          </ul>
+        </div>
+      </div>
+      <figure class="gato-grande">
+        <div class="janela">
+          <div class="janela-barra"><span>sete.png</span><span class="bt" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+          <img src="img/gato-icone.webp" alt="Desenho rabiscado de um gato preto com sorriso cheio de dentes e um brinco na orelha, sobre fundo vermelho" width="640" height="640">
+        </div>
+        <span class="grito red" aria-hidden="true">!!!</span>
+      </figure>
     </div>
   </section>
 </main>
 
-  <img class="sticker" data-id="olho" src="img/stickers/olho.webp" alt="" style="--x:-60px;--y:640px;--w:150px;--r:-8deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
-  <img class="sticker" data-id="borboleta" src="img/stickers/borboleta.webp" alt="" style="--x:calc(100% - 110px);--y:560px;--w:130px;--r:12deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
-  <img class="sticker" data-id="gato" src="img/stickers/gato.webp" alt="" style="--x:calc(100% - 90px);--y:calc(100% - 150px);--w:110px;--r:-10deg" title="me arrasta! (2 cliques: volta pro lugar)" draggable="false">
-</div>
-
-<footer>
-  © 2026 Karina Rodrigues · sete chaves ·
-  <a href="https://github.com/seventsky" target="_blank" rel="noopener">github</a> ·
-  <a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">linkedin</a>
+<footer class="rodape">
+  <div class="wrap">
+    <div class="rodape-grid">
+      <div>
+        <a class="marca" href="index.html" aria-label="Karina Rodrigues, página inicial">
+          <img src="img/logo.webp" alt="" width="160" height="146">
+          <b>Karina <span>Rodrigues</span></b>
+        </a>
+        <p>segurança da informação, desenvolvimento web e escrita. rio de janeiro.</p>
+      </div>
+      <nav aria-label="Páginas">
+        <h2>páginas</h2>
+        <ul>
+          <li><a href="index.html">início</a></li>
+          <li><a href="sobre.html">sobre</a></li>
+          <li><a href="projects.html">projetos</a></li>
+          <li><a href="lab.html">laboratório</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h2>me acha aqui</h2>
+        <ul>
+          <li><a href="https://github.com/seventsky" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/in/karina-rodrigues-3610613b5/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://tryhackme.com/p/s3te" target="_blank" rel="noopener">TryHackMe ↗</a></li>
+          <li><a href="https://x.com/setereveses" target="_blank" rel="noopener">X ↗</a></li>
+          <li><a href="https://discord.com/users/874118558521634826" target="_blank" rel="noopener">Discord ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rodape-fim mono">
+      <span>© 2026 Karina Rodrigues · sete chaves · atualizado em 26 out 2026</span>
+      <span class="botoes">
+        <button type="button" data-reset-stickers>arrumar stickers</button>
+        <a class="link-seta" href="#conteudo">voltar ao topo ↑</a>
+      </span>
+    </div>
+  </div>
 </footer>
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>
