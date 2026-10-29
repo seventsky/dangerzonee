@@ -1,62 +1,42 @@
-/* =========================================================
-   KARINA RODRIGUES · preto, vermelho e papel
-   Organização:
-   1. cores e fontes (variáveis)
-   2. base
-   3. peças que se repetem (botões, papel, janela, etiquetas)
-   4. cabeçalho, menu e busca
-   5. home
-   6. páginas internas (cabeçalho da página, artigo, listas)
-   7. rodapé
-   8. stickers
-   9. telas menores e acessibilidade
 
-   Regra da casa: texto corrido sempre em cima de fundo claro
-   (.papel / .janela). No preto e no vermelho só vão títulos
-   grandes e etiquetas curtas.
-   ========================================================= */
-
-/* 1. CORES E FONTES ------------------------------------- */
-/* Cyber Brush (HansCo Studio). O "ç" não existe na fonte original,
-   então foi montado juntando o "C" com a vírgula da própria fonte. */
 @font-face{
   font-family:"Cyber Brush";
   src:url("fonts/cyber-brush.woff2") format("woff2");
   font-weight:400;font-style:normal;
-  font-display:swap; /* mostra o texto com outra fonte enquanto ela carrega */
+  font-display:swap; 
 }
 :root{
-  --preto:#0b0506;       /* fundo do site */
-  --tinta:#160809;       /* preto das barras e janelas */
-  --red:#c8161d;         /* vermelho principal */
-  --red-escuro:#7a0000;  /* vermelho do gato do logo */
-  --hot:#ff4a4a;         /* vermelho forte, só pra destaque em fundo preto */
-  --papel:#f3ece4;       /* creme das caixas claras */
-  --papel-2:#e6dbcf;     /* creme um tom abaixo (linhas, hover) */
-  --texto:#170a0b;       /* texto em cima do creme */
-  --texto-2:#5a4744;     /* texto secundário em cima do creme */
-  --cinza:#b09b97;       /* texto secundário em cima do preto */
+  --preto:#0b0506;       
+  --tinta:#160809;      
+  --red:#c8161d;        
+  --red-escuro:#7a0000;  
+  --hot:#ff4a4a;        
+  --papel:#f3ece4;      
+  --papel-2:#e6dbcf;     
+  --texto:#170a0b;       
+  --texto-2:#5a4744;     
+  --cinza:#b09b97;      
   --linha:#000;
 
-  --display:"Archivo","Arial Narrow",Impact,sans-serif;     /* títulos grandes */
-  --sans:"IBM Plex Sans",system-ui,sans-serif;               /* texto corrido */
-  --mono:"IBM Plex Mono",ui-monospace,monospace;             /* menus, etiquetas, botões */
-  --brush:"Cyber Brush","Pixelify Sans",Impact,sans-serif;   /* nome e assinatura */
+  --display:"Archivo","Arial Narrow",Impact,sans-serif;     
+  --sans:"IBM Plex Sans",system-ui,sans-serif;             
+  --mono:"IBM Plex Mono",ui-monospace,monospace;            
+  --brush:"Cyber Brush","Pixelify Sans",Impact,sans-serif;   
   --pixel:"Pixelify Sans","Courier New",monospace;
   --serif:"Instrument Serif",Georgia,serif;
 
   --largura:1200px;
-  --respiro:24px;        /* margem lateral */
+  --respiro:24px;       
   --sombra:8px 8px 0 var(--linha);
 }
 
-/* 2. BASE ------------------------------------------------ */
+
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{
   font-family:var(--sans);font-size:1rem;line-height:1.6;
   color:var(--papel);
-  /* grade quadriculada vermelha bem fraquinha em cima do preto */
+
   background:
     linear-gradient(rgba(255,74,74,.055) 1px,transparent 1px) 0 0/40px 40px,
     linear-gradient(90deg,rgba(255,74,74,.055) 1px,transparent 1px) 0 0/40px 40px,
@@ -75,10 +55,8 @@ p:last-child{margin-bottom:0}
 .pular:focus{left:16px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* caixa central que alinha tudo na mesma coluna */
 .wrap{max-width:var(--largura);margin:0 auto;padding:0 var(--respiro)}
 
-/* fundo vermelho com pontinhos de retícula (hero, contato, topo das páginas) */
 .vermelho{
   background:
     radial-gradient(rgba(0,0,0,.2) 1.2px,transparent 1.7px) 0 0/8px 8px,
@@ -86,11 +64,9 @@ p:last-child{margin-bottom:0}
   border-bottom:3px solid var(--linha);
 }
 
-/* 3. PEÇAS QUE SE REPETEM -------------------------------- */
-/* etiquetinha em mono, caixa alta */
+
 .mono{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
 
-/* caixa clara (onde vai o texto) */
 .papel{
   background:var(--papel);color:var(--texto);
   border:3px solid var(--linha);box-shadow:var(--sombra);
@@ -98,7 +74,6 @@ p:last-child{margin-bottom:0}
 .papel a{color:var(--red-escuro)}
 .papel a:hover{color:var(--red)}
 
-/* janela estilo sistema: barra preta com nome do "arquivo" + botõezinhos */
 .janela{background:var(--papel);color:var(--texto);border:3px solid var(--linha);box-shadow:var(--sombra)}
 .janela-barra{
   display:flex;align-items:center;justify-content:space-between;gap:12px;
@@ -113,7 +88,6 @@ p:last-child{margin-bottom:0}
 }
 .janela-barra .bt i:last-child{background:var(--red);border-color:var(--red)}
 
-/* botões */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:44px;padding:0 18px;
@@ -131,11 +105,9 @@ p:last-child{margin-bottom:0}
 .papel .btn-claro:hover,.btn-claro:hover{background:var(--texto);color:var(--papel)}
 .botoes{display:flex;flex-wrap:wrap;gap:12px 14px}
 
-/* link de texto com seta (↗ / →) */
 .link-seta{font:500 .8rem var(--mono);letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:1px}
 .link-seta:hover{color:var(--red)}
 
-/* etiqueta gritada, tipo "OH WOW" das colagens */
 .grito{
   display:inline-block;
   font:800 1rem/1 var(--display);font-stretch:80%;letter-spacing:.02em;text-transform:uppercase;
@@ -145,7 +117,6 @@ p:last-child{margin-bottom:0}
 }
 .grito.red{background:var(--red);color:#fff}
 
-/* caixa de seleção (aquele retângulo com quadradinhos nos cantos) */
 .selecao{position:relative}
 .selecao::before,.selecao::after{content:"";position:absolute;pointer-events:none}
 .selecao::before{inset:-14px;border:2px solid var(--linha)}
@@ -158,11 +129,9 @@ p:last-child{margin-bottom:0}
     linear-gradient(var(--linha),var(--linha)) right bottom/12px 12px no-repeat;
 }
 
-/* lista de tags */
 .tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
 .tags li{font:500 .72rem/1 var(--mono);letter-spacing:.03em;border:1.5px solid currentColor;padding:5px 8px}
 
-/* cabeçalho de seção: [01] TÍTULO .......... ver tudo → */
 .secao{padding-top:112px;position:relative}
 .secao-cab{
   display:grid;grid-template-columns:auto 1fr auto;align-items:end;gap:6px 18px;
@@ -174,11 +143,9 @@ p:last-child{margin-bottom:0}
 .secao-cab .link-seta{grid-column:3;grid-row:1;color:var(--papel);white-space:nowrap}
 .secao-cab .link-seta:hover{color:var(--hot)}
 
-/* 4. CABEÇALHO, MENU E BUSCA ----------------------------- */
 .topo{position:sticky;top:0;z-index:40;background:var(--papel);color:var(--texto);border-bottom:3px solid var(--linha)}
 .topo-in{max-width:var(--largura);margin:0 auto;padding:0 var(--respiro);height:68px;display:flex;align-items:center;gap:20px}
 
-/* logo: gatinho + nome, tipo "ícone + Claude Code" */
 .marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto);flex-shrink:0;margin-right:auto}
 .marca img{width:40px;height:auto;transition:transform .2s}
 .marca:hover img{transform:rotate(-10deg) scale(1.08)}
@@ -195,8 +162,7 @@ p:last-child{margin-bottom:0}
 }
 .nav li:last-child a{border-right:2px solid var(--linha)}
 .nav li a small{font-size:.62rem;letter-spacing:.08em;color:var(--texto-2)}
-/* o texto do link troca de fonte no hover (o script escolhe qual).
-   Como as colunas têm largura fixa, o menu não "pula" quando a fonte muda. */
+
 .nav li a span{white-space:nowrap;font-size:1em}
 .nav li a:hover,.nav li a:focus-visible{background:var(--tinta);color:var(--hot)}
 .nav li a:hover small,.nav li a:focus-visible small{color:var(--cinza)}
@@ -205,7 +171,6 @@ p:last-child{margin-bottom:0}
 
 .menu-btn{display:none}
 
-/* busca */
 .busca{position:relative;width:230px}
 .busca input{
   width:100%;height:40px;font:400 .85rem var(--mono);
@@ -231,9 +196,8 @@ p:last-child{margin-bottom:0}
 .busca-res a:hover small,.busca-res a:focus small{color:#fff}
 .busca-res .vazio{padding:9px 12px;color:var(--cinza);font:400 .85rem var(--mono)}
 
-/* 5. HOME ------------------------------------------------ */
 .hero-sec{padding:28px 0 72px;position:relative;overflow:hidden}
-/* espinhos bem de leve por trás do vermelho */
+
 .hero-sec::before{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:url("img/fundo-espinhos.webp") center/1400px auto;
@@ -241,7 +205,6 @@ p:last-child{margin-bottom:0}
 }
 .hero-sec > .wrap{position:relative}
 
-/* linha de informações em cima do pôster */
 .hero-meta{
   display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;
   color:#fff;padding-bottom:12px;margin-bottom:28px;border-bottom:2px solid var(--linha);
@@ -250,10 +213,9 @@ p:last-child{margin-bottom:0}
 
 .hero-grid{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:28px 48px;align-items:start}
 
-/* nome interativo: cada palavra é uma barra de papel (pôster) */
 .hero{position:relative;cursor:crosshair;touch-action:pan-y}
 .name{
-  position:relative; /* necessário pro script medir as letras */
+  position:relative; 
   font-family:var(--brush);font-weight:400;
   font-size:clamp(2.6rem,7vw,6.3rem);line-height:1;text-transform:uppercase;
   color:var(--texto);user-select:none;
@@ -264,8 +226,8 @@ p:last-child{margin-bottom:0}
   padding:.1em .14em .02em;margin-bottom:10px;
   text-shadow:.04em .04em 0 var(--red);
 }
-/* número da barra, cantinho direito (01, 02) */
-.name .w::after{
+
+ .name .w::after{
   margin-left:auto;align-self:flex-end;padding:0 0 .35em .5em;
   font:500 .8rem/1 var(--mono);letter-spacing:normal;color:var(--texto-2);text-shadow:none;text-decoration:none;
 }
@@ -278,7 +240,6 @@ p:last-child{margin-bottom:0}
 .so-toque{display:none}
 @media (hover:none),(pointer:coarse){.so-mouse{display:none}.so-toque{display:inline}}
 
-/* barra preta com as três áreas */
 .faixa-preta{
   display:flex;align-items:center;justify-content:space-between;gap:16px;
   background:var(--tinta);color:var(--papel);border:3px solid var(--linha);box-shadow:var(--sombra);
@@ -293,7 +254,6 @@ p:last-child{margin-bottom:0}
 .intro p{max-width:60ch;color:var(--texto)}
 .intro .botoes{margin-top:22px}
 
-/* coluna da direita do hero: avatar + "estudando agora" */
 .hero-lado{display:grid;gap:44px;padding-top:6px}
 .avatar-wrap{position:relative;margin:14px 14px 0}
 .avatar-wrap .janela img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
@@ -309,7 +269,6 @@ p:last-child{margin-bottom:0}
 .agora li span{font:500 .7rem var(--mono);color:var(--texto-2);text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
 @keyframes pisca{50%{opacity:0}}
 
-/* faixa que corre (marquee). O texto vem duplicado no HTML pra emendar sem buraco. */
 .ticker{
   overflow:hidden;white-space:nowrap;
   background:var(--papel);color:var(--texto);
@@ -323,7 +282,6 @@ p:last-child{margin-bottom:0}
 .ticker:hover .ticker-in{animation-play-state:paused}
 @keyframes corre{to{transform:translateX(-50%)}}
 
-/* o que eu faço */
 .frentes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
 .frente{display:flex;flex-direction:column;gap:14px;padding:22px 22px 24px;transition:transform .15s,box-shadow .15s}
 .frente:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--linha)}
@@ -335,9 +293,8 @@ p:last-child{margin-bottom:0}
 .frente p{font-size:.95rem;color:var(--texto-2)}
 .frente .tags{margin-top:auto;padding-top:6px;color:var(--texto)}
 
-/* cartões de projeto */
 .projetos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
-/* o projeto favorito ocupa a linha toda: print na esquerda, texto na direita */
+
 .projetos .destaque{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
 .destaque .janela-barra{grid-column:1/-1}
 .destaque .thumb{border-bottom:0;border-right:3px solid var(--linha);aspect-ratio:auto;min-height:100%}
@@ -364,11 +321,9 @@ p:last-child{margin-bottom:0}
 .projeto .acoes .link-seta{color:var(--texto)}
 .projeto .acoes .link-seta:hover{color:var(--red)}
 
-/* laboratório + linha do tempo, lado a lado */
 .duas{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px;align-items:start}
 .duas > div > .mono-tit{display:block;margin-bottom:12px;color:var(--cinza)}
 
-/* lista de notas (usada na home e no laboratório) */
 .notas{list-style:none}
 .notas li + li{border-top:2px solid var(--linha)}
 .notas a{
@@ -386,7 +341,6 @@ p:last-child{margin-bottom:0}
 .notas a:hover .seta{transform:translateX(4px);color:var(--hot)}
 .notas li[hidden]{display:none}
 
-/* filtro do laboratório */
 .filtro{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:24px}
 .filtro .mono{color:var(--cinza);margin-right:4px}
 .filtro button{
@@ -398,7 +352,6 @@ p:last-child{margin-bottom:0}
 .filtro button[aria-pressed="true"]{background:var(--red);color:#fff}
 .filtro button small{opacity:.7;margin-left:4px}
 
-/* linha do tempo */
 .tempo{padding:22px 24px}
 .tempo ol{list-style:none;position:relative;padding-left:28px}
 .tempo ol::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:3px;background:var(--red)}
@@ -408,7 +361,6 @@ p:last-child{margin-bottom:0}
 .tempo b{font:800 1.35rem/1 var(--display);font-stretch:75%;color:var(--red-escuro)}
 .tempo li:last-child::before{background:var(--linha);animation:pisca 1s steps(1) infinite}
 
-/* contato */
 .contato-sec{margin-top:120px;border-top:3px solid var(--linha);padding:80px 0 88px;position:relative}
 .contato-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px 56px;align-items:center}
 .contato-titulo{
@@ -433,9 +385,7 @@ p:last-child{margin-bottom:0}
 .gato-grande img{width:100%;height:auto}
 .gato-grande .grito{position:absolute;right:-18px;top:-22px;z-index:2;transform:rotate(6deg)}
 
-/* 6. PÁGINAS INTERNAS ------------------------------------ */
-/* topo vermelho das páginas internas, com o título numa barra de papel */
-.pag-topo{padding:22px 0 56px}
+
 .trilha ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;color:#fff;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid var(--linha)}
 .trilha li + li::before{content:"/";margin-right:10px;color:var(--linha)}
 .trilha a{color:#fff;text-decoration:none;border-bottom:1.5px solid}
@@ -453,7 +403,6 @@ p:last-child{margin-bottom:0}
   font:500 1.05rem/1.5 var(--sans);
 }
 
-/* artigo: ficha na esquerda, texto na direita */
 .artigo{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px;align-items:start;padding-top:64px}
 .ficha{position:sticky;top:96px;padding:20px 22px 22px}
 .ficha h2{font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2);margin-bottom:14px}
@@ -475,13 +424,11 @@ p:last-child{margin-bottom:0}
 .ficha > .janela img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center 20%}
 .pag-corpo{padding-top:64px;position:relative}
 
-/* print grande no estudo de caso */
 .print{margin-top:64px}
 .print a{display:block;background:var(--tinta)}
 .print img{width:100%;height:auto}
 .print figcaption{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-top:3px solid var(--linha);color:var(--texto-2)}
 
-/* texto longo */
 .prose{max-width:66ch;font-size:1.06rem;line-height:1.75}
 .prose > p:first-child{font-size:1.22rem;line-height:1.55;font-weight:500}
 .prose p{margin-bottom:1.1em}
@@ -494,7 +441,7 @@ p:last-child{margin-bottom:0}
 .prose .todo p{font-size:inherit;font-weight:400}
 .assinatura{font-family:var(--brush);font-size:2.4rem;color:var(--red);text-align:right;margin-top:24px}
 
-/* anterior / próximo no fim do artigo */
+
 .paginacao{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding-top:56px}
 .paginacao a{display:flex;flex-direction:column;gap:6px;padding:18px 20px;text-decoration:none;transition:transform .12s,box-shadow .12s}
 .paginacao a:hover{transform:translate(-2px,-2px);box-shadow:10px 10px 0 var(--linha);color:var(--texto)}
@@ -503,7 +450,7 @@ p:last-child{margin-bottom:0}
 .paginacao b{font:800 1.4rem/1.05 var(--display);font-stretch:80%;text-transform:uppercase}
 .paginacao .prox{text-align:right;grid-column:2}
 
-/* 7. RODAPÉ ---------------------------------------------- */
+
 .rodape{background:var(--tinta);border-top:3px solid var(--linha);margin-top:120px;padding:48px 0 28px;color:var(--cinza)}
 main:has(> .contato-sec:last-child) + .rodape{margin-top:0}
 .rodape-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:32px}
@@ -518,9 +465,7 @@ main:has(> .contato-sec:last-child) + .rodape{margin-top:0}
 .rodape-fim button{background:none;border:1.5px solid var(--cinza);color:var(--cinza);font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;cursor:pointer}
 .rodape-fim button:hover{border-color:var(--hot);color:var(--hot)}
 
-/* 8. STICKERS -------------------------------------------- */
-/* posição inicial de cada sticker fica no HTML (style="--x:..;--y:..").
-   Ela é relativa à seção onde o sticker está. */
+
 .sticker{
   position:absolute;z-index:10;
   left:var(--x);top:var(--y);width:var(--w,120px);
@@ -531,8 +476,7 @@ main:has(> .contato-sec:last-child) + .rodape{margin-top:0}
 .sticker:hover{filter:drop-shadow(4px 4px 0 rgba(0,0,0,.55)) brightness(1.12)}
 .sticker.arrastando{cursor:grabbing;z-index:45}
 
-/* 9. TELAS MENORES E ACESSIBILIDADE ---------------------- */
-/* menu vira botão abaixo de 1080px */
+
 @media (max-width:1080px){
   .menu-btn{
     display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;
@@ -552,7 +496,7 @@ main:has(> .contato-sec:last-child) + .rodape{margin-top:0}
   .nav ul{grid-template-columns:1fr 1fr;gap:10px;height:auto}
   .nav li a,.nav li:last-child a{flex-direction:row;justify-content:space-between;min-height:56px;padding:0 16px;border:2px solid var(--linha);font-size:1rem}
   .busca{width:100%}
-  .busca input{height:48px;font-size:16px} /* 16px: senão o iPhone dá zoom sozinho */
+  .busca input{height:48px;font-size:16px} 
   .busca kbd{display:none}
   .busca-res a{padding:13px 12px}
 }
@@ -603,8 +547,8 @@ main:has(> .contato-sec:last-child) + .rodape{margin-top:0}
   .prose > p:first-child{font-size:1.1rem}
   .prose code{white-space:normal;word-break:break-word}
   .rodape-grid{grid-template-columns:minmax(0,1fr)}
-  /* no celular os stickers ficam parados e só um aparece, pra não cobrir texto
-     nem "roubar" o dedo de quem está rolando */
+
+   
   .sticker{width:calc(var(--w,120px) * .6);pointer-events:none}
   .sticker:not(.fica-no-celular){display:none}
   .sticker.fica-no-celular{left:calc(100% - 78px);top:78px}
