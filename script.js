@@ -1,23 +1,8 @@
-// =========================================================
-// script.js · usado em todas as páginas
-// Cada parte fica dentro de uma função própria. Se o elemento
-// não existir na página (ex.: o nome interativo só existe na home),
-// a função simplesmente não faz nada.
-// =========================================================
 
-// As páginas que ficam dentro de /casos e /notas precisam de "../"
-// antes dos links. O <body data-root="../"> avisa isso pro script.
 const ROOT = document.body.dataset.root || '';
 const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-// ---------------------------------------------------------
-// 1. NOME INTERATIVO (só na home)
-// Parado, o nome fica na fonte pincel (Cyber Brush).
-// O cursor controla: esquerda/direita = espaçamento,
-// cima/meio/baixo = fonte, embaixo = sublinhado,
-// e as letras perto do cursor "fogem" e crescem.
-// ---------------------------------------------------------
 function nomeInterativo(){
   const box = document.querySelector('.hero');
   if (!box) return;
@@ -31,15 +16,15 @@ function nomeInterativo(){
     { nome: 'serif', familia: 'var(--serif)', estilo: 'italic' },
     { nome: 'pincel', familia: 'var(--brush)', estilo: 'normal' },
   ];
-  const PINCEL = 3; // fonte do nome quando ninguém está mexendo
+  const PINCEL = 3; 
   let fonteAtual = -1;
-  let spacing = 0, target = 0;   // espaçamento atual e o que ele quer alcançar
-  let mx = 0, my = 0;            // posição do cursor
+  let spacing = 0, target = 0;   
+  let mx = 0, my = 0;          
   let active = false, raf = null;
   const lerp = (a, b, t) => a + (b - a) * t;
 
   function setFont(i){
-    if (i === fonteAtual) return;  // só troca se mudou (antes trocava a cada movimento)
+    if (i === fonteAtual) return; 
     fonteAtual = i;
     name.style.fontFamily = fonts[i].familia;
     name.style.fontStyle = fonts[i].estilo;
@@ -50,9 +35,7 @@ function nomeInterativo(){
     name.style.letterSpacing = spacing.toFixed(3) + 'em';
 
     if (active && !calmo){
-      // Primeiro LÊ a posição de todas as letras, depois ESCREVE.
-      // offsetLeft/offsetTop ignoram o transform, então a letra não
-      // "foge de si mesma" (era isso que fazia as letras tremerem).
+   
       const base = name.getBoundingClientRect();
       const centros = letters.map(el => ({
         x: base.left + el.offsetLeft + el.offsetWidth / 2,
@@ -60,7 +43,7 @@ function nomeInterativo(){
       }));
       letters.forEach((el, i) => {
         const dx = mx - centros[i].x, dy = my - centros[i].y;
-        const f = Math.max(0, 1 - Math.hypot(dx, dy) / 160); // 1 = colado no cursor, 0 = longe
+        const f = Math.max(0, 1 - Math.hypot(dx, dy) / 160); 
         el.style.transform = `translate(${(-dx * f * .15).toFixed(1)}px,${(-dy * f * .15).toFixed(1)}px) scale(${(1 + f * .35).toFixed(2)})`;
         el.style.opacity = (.55 + f * .45).toFixed(2);
       });
@@ -68,7 +51,7 @@ function nomeInterativo(){
       letters.forEach(el => { el.style.transform = ''; el.style.opacity = ''; });
     }
 
-    // continua animando só enquanto precisa
+  
     if (active || Math.abs(spacing - target) > .002) raf = requestAnimationFrame(frame);
     else raf = null;
   }
@@ -77,10 +60,10 @@ function nomeInterativo(){
   box.addEventListener('pointermove', e => {
     const r = box.getBoundingClientRect();
     mx = e.clientX; my = e.clientY; active = true;
-    const x = (e.clientX - r.left) / r.width;   // 0 (esquerda) até 1 (direita)
-    const y = (e.clientY - r.top) / r.height;   // 0 (topo) até 1 (base)
-    target = (1 - x) * 0.3 - 0.04;               // esquerda: afasta | direita: aproxima
-    const i = y < .33 ? 2 : y > .66 ? 0 : 1;      // topo: serifa | meio: mono | base: pixel
+    const x = (e.clientX - r.left) / r.width;   
+    const y = (e.clientY - r.top) / r.height;   
+    target = (1 - x) * 0.3 - 0.04;               
+    const i = y < .33 ? 2 : y > .66 ? 0 : 1;    
     setFont(i);
     const sublinhado = y > .66;
     name.classList.toggle('sublinhado', sublinhado);
@@ -88,7 +71,7 @@ function nomeInterativo(){
     kick();
   });
 
-  // pointerleave = cursor saiu | pointercancel = o dedo começou a rolar a página
+ 
   const repouso = () => {
     active = false; target = 0; setFont(PINCEL);
     name.classList.remove('sublinhado');
@@ -102,11 +85,7 @@ function nomeInterativo(){
 }
 
 
-// ---------------------------------------------------------
-// 2. BUSCA DO SITE
-// Uma listinha com todas as páginas. Pra uma página nova
-// aparecer na busca, é só adicionar uma linha aqui.
-// ---------------------------------------------------------
+
 const PAGINAS = [
   { titulo: 'Início',                        url: 'index.html',                          tipo: 'página',  tags: 'home karina rodrigues contato' },
   { titulo: 'Sobre mim',                     url: 'sobre.html',                          tipo: 'página',  tags: 'história trajetória poesia rio de janeiro quem sou' },
@@ -122,7 +101,7 @@ const PAGINAS = [
   { titulo: 'Discord Rich Presence',         url: 'notas/discord-rich-presence.html',    tipo: 'código',  tags: 'rust cargo systemd serviço linux discord' },
 ];
 
-// tira acentos e deixa minúsculo: "Depuração" -> "depuracao"
+
 const normaliza = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
 function busca(){
@@ -141,8 +120,7 @@ function busca(){
       return;
     }
     for (const p of achados){
-      // criando os elementos um a um (em vez de innerHTML com o texto digitado)
-      // pra ninguém conseguir injetar HTML pela busca
+      
       const li = document.createElement('li');
       const a = document.createElement('a');
       a.href = ROOT + p.url;
@@ -157,14 +135,13 @@ function busca(){
 
   input.addEventListener('input', mostra);
 
-  // Enter abre o primeiro resultado
+ 
   form.addEventListener('submit', e => {
     e.preventDefault();
     const primeiro = lista.querySelector('a');
     if (primeiro) location.href = primeiro.href;
   });
-
-  // Esc limpa; seta pra baixo entra na lista
+  
   form.addEventListener('keydown', e => {
     if (e.key === 'Escape'){ input.value = ''; mostra(); input.focus(); }
     if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
@@ -177,10 +154,10 @@ function busca(){
     }
   });
 
-  // clicou fora, fecha
+
   document.addEventListener('click', e => { if (!form.contains(e.target)) lista.innerHTML = ''; });
 
-  // atalho: apertar "/" em qualquer lugar da página vai pra busca
+ 
   document.addEventListener('keydown', e => {
     const digitando = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
     if (e.key !== '/' || digitando || e.ctrlKey || e.metaKey || e.altKey) return;
@@ -192,19 +169,14 @@ function busca(){
 }
 
 
-// ---------------------------------------------------------
-// 3. STICKERS ARRASTÁVEIS
-// Dá pra arrastar os stickers pela página. A posição fica
-// salva no navegador de quem visitou. Dois cliques = volta
-// pro lugar. O botão "arrumar stickers" reseta todos.
-// ---------------------------------------------------------
+
 function stickers(){
   const todos = document.querySelectorAll('.sticker');
   if (!todos.length) return;
-  // "stickers2": o layout mudou, então as posições antigas salvas não valem mais
+
   const chave = 'stickers2:' + location.pathname;
 
-  // localStorage pode falhar (aba anônima, por exemplo), por isso o try/catch
+ 
   let salvo = {};
   try { salvo = JSON.parse(localStorage.getItem(chave)) || {}; } catch {}
   const guarda = () => { try { localStorage.setItem(chave, JSON.stringify(salvo)); } catch {} };
@@ -255,11 +227,7 @@ function stickers(){
 }
 
 
-// ---------------------------------------------------------
-// 4. MENU: FONTE TROCA NO HOVER
-// Cada vez que o cursor (ou o foco do teclado) passa num link
-// do menu, o texto dele ganha uma fonte diferente da anterior.
-// ---------------------------------------------------------
+
 function fonteDoMenu(){
   const links = document.querySelectorAll('.nav li a');
   if (!links.length) return;
@@ -291,10 +259,7 @@ function fonteDoMenu(){
 }
 
 
-// ---------------------------------------------------------
-// 5. MENU NO CELULAR
-// Abaixo de 1080px o menu vira um botão. Esc fecha.
-// ---------------------------------------------------------
+
 function menuCelular(){
   const botao = document.querySelector('.menu-btn');
   const nav = document.getElementById('nav');
@@ -308,18 +273,13 @@ function menuCelular(){
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && nav.classList.contains('aberto')){ abre(false); botao.focus(); }
   });
-  // clicou fora do cabeçalho, fecha
+
   document.addEventListener('click', e => {
     if (nav.classList.contains('aberto') && !e.target.closest('.topo')) abre(false);
   });
 }
 
 
-// ---------------------------------------------------------
-// 6. FILTRO DO LABORATÓRIO (só em lab.html)
-// Os botões têm data-filtro="nota|estudo|código" e cada item
-// da lista tem data-tipo. Filtro vazio = mostra tudo.
-// ---------------------------------------------------------
 function filtroLab(){
   const lista = document.querySelector('[data-lista-notas]');
   const botoes = document.querySelectorAll('[data-filtro]');
