@@ -296,7 +296,7 @@ p:last-child{margin-bottom:0}
 /* coluna da direita do hero: avatar + "estudando agora" */
 .hero-lado{display:grid;gap:44px;padding-top:6px}
 .avatar-wrap{position:relative;margin:14px 14px 0}
-.avatar-wrap .janela img{width:100%;height:auto;aspect-ratio:480/576;object-fit:cover}
+.avatar-wrap .janela img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
 .avatar-wrap figcaption{padding:8px 10px;font:500 .7rem var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--texto-2);border-top:3px solid var(--linha)}
 .avatar-wrap .grito{position:absolute;left:-26px;top:38%;z-index:2}
 
