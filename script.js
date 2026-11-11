@@ -179,6 +179,16 @@ function busca(){
 
   // clicou fora, fecha
   document.addEventListener('click', e => { if (!form.contains(e.target)) lista.innerHTML = ''; });
+
+  // atalho: apertar "/" em qualquer lugar da página vai pra busca
+  document.addEventListener('keydown', e => {
+    const digitando = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+    if (e.key !== '/' || digitando || e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault();
+    const nav = document.querySelector('.nav');
+    if (nav && getComputedStyle(nav).display === 'none') document.querySelector('.menu-btn')?.click();
+    input.focus();
+  });
 }
 
 
@@ -191,7 +201,8 @@ function busca(){
 function stickers(){
   const todos = document.querySelectorAll('.sticker');
   if (!todos.length) return;
-  const chave = 'stickers:' + location.pathname;
+  // "stickers2": o layout mudou, então as posições antigas salvas não valem mais
+  const chave = 'stickers2:' + location.pathname;
 
   // localStorage pode falhar (aba anônima, por exemplo), por isso o try/catch
   let salvo = {};
@@ -244,6 +255,87 @@ function stickers(){
 }
 
 
+// ---------------------------------------------------------
+// 4. MENU: FONTE TROCA NO HOVER
+// Cada vez que o cursor (ou o foco do teclado) passa num link
+// do menu, o texto dele ganha uma fonte diferente da anterior.
+// ---------------------------------------------------------
+function fonteDoMenu(){
+  const links = document.querySelectorAll('.nav li a');
+  if (!links.length) return;
+  const fontes = [
+    { familia: 'var(--brush)',   estilo: 'normal', tamanho: '1.15em' },
+    { familia: 'var(--pixel)',   estilo: 'normal', tamanho: '1.1em' },
+    { familia: 'var(--serif)',   estilo: 'italic', tamanho: '1.3em' },
+    { familia: 'var(--display)', estilo: 'normal', tamanho: '1.15em' },
+  ];
+  let ultima = -1;
+
+  links.forEach(a => {
+    const span = a.querySelector('span');
+    const troca = () => {
+      let i;
+      do { i = Math.floor(Math.random() * fontes.length); } while (i === ultima);
+      ultima = i;
+      span.style.fontFamily = fontes[i].familia;
+      span.style.fontStyle = fontes[i].estilo;
+      span.style.fontSize = fontes[i].tamanho;
+      span.style.fontWeight = fontes[i].familia === 'var(--display)' ? '800' : '';
+    };
+    const volta = () => { span.removeAttribute('style'); };
+    a.addEventListener('pointerenter', troca);
+    a.addEventListener('focus', troca);
+    a.addEventListener('pointerleave', volta);
+    a.addEventListener('blur', volta);
+  });
+}
+
+
+// ---------------------------------------------------------
+// 5. MENU NO CELULAR
+// Abaixo de 1080px o menu vira um botão. Esc fecha.
+// ---------------------------------------------------------
+function menuCelular(){
+  const botao = document.querySelector('.menu-btn');
+  const nav = document.getElementById('nav');
+  if (!botao || !nav) return;
+
+  const abre = sim => {
+    botao.setAttribute('aria-expanded', sim);
+    nav.classList.toggle('aberto', sim);
+  };
+  botao.addEventListener('click', () => abre(botao.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nav.classList.contains('aberto')){ abre(false); botao.focus(); }
+  });
+  // clicou fora do cabeçalho, fecha
+  document.addEventListener('click', e => {
+    if (nav.classList.contains('aberto') && !e.target.closest('.topo')) abre(false);
+  });
+}
+
+
+// ---------------------------------------------------------
+// 6. FILTRO DO LABORATÓRIO (só em lab.html)
+// Os botões têm data-filtro="nota|estudo|código" e cada item
+// da lista tem data-tipo. Filtro vazio = mostra tudo.
+// ---------------------------------------------------------
+function filtroLab(){
+  const lista = document.querySelector('[data-lista-notas]');
+  const botoes = document.querySelectorAll('[data-filtro]');
+  if (!lista || !botoes.length) return;
+
+  botoes.forEach(b => b.addEventListener('click', () => {
+    const tipo = b.dataset.filtro;
+    botoes.forEach(o => o.setAttribute('aria-pressed', o === b));
+    lista.querySelectorAll('li').forEach(li => { li.hidden = tipo && li.dataset.tipo !== tipo; });
+  }));
+}
+
+
 nomeInterativo();
 busca();
 stickers();
+fonteDoMenu();
+menuCelular();
+filtroLab();
